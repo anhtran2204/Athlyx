@@ -1,0 +1,56 @@
+<svg width="55" height="55" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-icon-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22d3ee" />
+      <stop offset="100%" style="stop-color:#0891b2" />
+    </linearGradient>
+    <linearGradient id="silver-gradient-icon-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#94a3b8" />
+      <stop offset="50%" style="stop-color:#64748b" />
+      <stop offset="100%" style="stop-color:#475569" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexagonal badge shape -->
+  <path
+    d="M50 8 L82 28 L82 72 L50 92 L18 72 L18 28 Z"
+    fill="none"
+    stroke="url(#silver-gradient-icon-light)"
+    stroke-width="2"
+    opacity="0.4"
+  />
+  
+  <!-- Inner hexagon for depth -->
+  <path
+    d="M50 15 L75 30 L75 70 L50 85 L25 70 L25 30 Z"
+    fill="#ffffff"
+    opacity="0.15"
+  />
+  
+  <!-- Lightning bolt / Energy symbol -->
+  <path
+    d="M50 25 L62 48 L54 48 L58 62 L42 82 L46 56 L38 56 L50 25 Z"
+    fill="url(#gradient-icon-light)"
+  />
+  
+  <!-- Sharp accent lines -->
+  <path
+    d="M30 50 L35 50 L38 42 L41 58"
+    stroke="url(#gradient-icon-light)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    opacity="0.7"
+  />
+  
+  <path
+    d="M59 58 L62 42 L65 50 L70 50"
+    stroke="url(#gradient-icon-light)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    opacity="0.7"
+  />
+</svg>
