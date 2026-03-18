@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,11 +11,29 @@ export default defineNuxtConfig({
     "@nuxt/hints",
     "@nuxt/fonts",
   ],
-  css: ["./app/assets/css/main.css"],
+  routeRules: {
+    "/": { appLayout: "default" },
+    "/login": { appLayout: "authenticate" },
+
+  },
+  css: ["~~/app/assets/css/main.css"],
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
   vite: {
     plugins: [
       tailwindcss(),
+      tsconfigPaths(),
     ],
+    optimizeDeps: {
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+      ],
+    },
   },
   eslint: {
     config: {

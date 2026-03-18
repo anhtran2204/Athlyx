@@ -34,7 +34,11 @@ export default withNuxt(
       "node/prefer-global/process": ["off"],
       "no-process-env": ["error"],
       "unicorn/filename-case": ["error", {
-        case: "kebabCase",
+        cases: {
+          kebabCase: true,
+          camelCase: true,
+          pascalCase: true,
+        },
         ignore: ["README.md"],
       }],
       "vue/block-order": ["error", {
