@@ -1,11 +1,14 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-slate-950">
-    <header class="sticky z-50 top-0 py-4">
-      <NavBar />
-    </header>
-    <main class="grow flex pb-4">
+  <div class="flex flex-col min-h-screen bg-white dark:bg-slate-950">
+    <Header />
+    <main class="grow min-w-full flex container">
       <slot />
     </main>
+    <NuxtSeparator
+      icon="lucide:zap"
+      type="solid"
+      class="h-px"
+    />
     <Footer />
   </div>
 </template>

@@ -1,0 +1,38 @@
+<svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagonal badge shape -->
+  <path
+    d="M50 8 L82 28 L82 72 L50 92 L18 72 L18 28 Z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+  />
+  
+  <!-- Lightning bolt / Energy symbol (outline) -->
+  <path
+    d="M50 25 L62 48 L54 48 L58 62 L42 82 L46 56 L38 56 L50 25 Z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linejoin="miter"
+  />
+  
+  <!-- Left accent line -->
+  <path
+    d="M30 50 L35 50 L38 42 L41 58"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  
+  <!-- Right accent line -->
+  <path
+    d="M59 58 L62 42 L65 50 L70 50"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>
