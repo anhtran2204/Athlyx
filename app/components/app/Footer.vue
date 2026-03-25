@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <NuxtFooter>
+  <NuxtFooter class="border-0">
     <template #left>
       <p class="text-muted text-sm">
         Copyright © 2026-{{ new Date().getFullYear() }}

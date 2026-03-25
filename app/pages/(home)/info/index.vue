@@ -5,12 +5,12 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
+  <div class="min-w-full container">
     <div id="about">
-      <h2>About Section</h2>
+      <AboutSection />
     </div>
     <div id="contacts">
-      <h2>Contacts Section</h2>
+      <ContactsSection />
     </div>
   </div>
 </template>

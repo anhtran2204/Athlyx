@@ -34,20 +34,40 @@ const cards = ref([
 </script>
 
 <template>
-  <NuxtPageSection
-    title="Take control of your productivity"
-    headline="Features"
-    description="Powerful features designed to help you reach your fitness and nutrition goals faster."
-  >
-    <NuxtPageGrid>
-      <NuxtPageCard
-        v-for="(card, index) in cards"
-        :key="index"
-        v-bind="card"
-        spotlight
-        spotlight-color="info"
-        class="transition delay-50 duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
-      />
-    </NuxtPageGrid>
-  </NuxtPageSection>
+  <div class="grow flex flex-col light:bg-features dark:bg-features">
+    <NuxtPageSection
+      title="Take control of your productivity"
+      headline="Features"
+      description="Powerful features designed to help you reach your fitness and nutrition goals faster."
+      class="grow"
+    >
+      <NuxtPageGrid>
+        <NuxtPageCard
+          v-for="(card, index) in cards"
+          :key="index"
+          v-bind="card"
+          spotlight
+          spotlight-color="info"
+          class="transition delay-50 duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+        />
+      </NuxtPageGrid>
+    </NuxtPageSection>
+    <NuxtPageSection
+      title="Take control of your productivity"
+      headline="Features"
+      description="Powerful features designed to help you reach your fitness and nutrition goals faster."
+      class="grow"
+    >
+      <NuxtPageGrid>
+        <NuxtPageCard
+          v-for="(card, index) in cards"
+          :key="index"
+          v-bind="card"
+          spotlight
+          spotlight-color="info"
+          class="transition delay-50 duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+        />
+      </NuxtPageGrid>
+    </NuxtPageSection>
+  </div>
 </template>

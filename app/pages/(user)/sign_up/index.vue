@@ -1,9 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
-  path: "/signup",
+  path: "/sign_up",
 });
 </script>
 
 <template>
-  <AuthenticatePage label="Sign Up" />
+  <div />
 </template>
