@@ -11,11 +11,6 @@ export default defineNuxtConfig({
     "@nuxt/hints",
     "@nuxt/fonts",
   ],
-  routeRules: {
-    "/": { appLayout: "default" },
-    "/login": { appLayout: "authenticate" },
-    "/signup": { appLayout: "authenticate" },
-  },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },

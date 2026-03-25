@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-  <div />
+  <FeatureSection />
 </template>

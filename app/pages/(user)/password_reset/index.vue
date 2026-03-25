@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  path: "/login",
+  path: "/password_reset",
 });
 </script>
 

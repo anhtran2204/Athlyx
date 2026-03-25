@@ -1,5 +1,5 @@
 <template>
-  <NuxtPageHero class="light:bg-secondary dark:bg-main fadeInUp-animation">
+  <NuxtPageHero>
     <div>
       <div class="mb-7 font-semibold flex items-center gap-1.5 justify-center">
         <div class="inline-flex items-center gap-2 bg-cyan-100 text-sky-700 px-4 py-2 rounded-full text-sm font-medium">
@@ -17,7 +17,7 @@
     <div>
       <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center">
         <NuxtButton
-          to="/signup"
+          to="/sign_up"
           size="xl"
           variant="solid"
           icon="i-lucide-square-play"

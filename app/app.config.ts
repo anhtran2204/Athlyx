@@ -41,6 +41,7 @@ export default defineAppConfig({
     },
     pageFeature: {
       slots: {
+        leading: "w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center flex-shrink-0",
         leadingIcon: "text-info",
       },
     },
@@ -49,14 +50,21 @@ export default defineAppConfig({
         leadingIcon: "size-8 text-info",
       },
     },
-    header: {
-      slots: {
-        root: "bg-transparent",
-      },
-    },
     navigationMenu: {
       defaultVariants: {
         color: "info",
+      },
+    },
+    modal: {
+      slots: {
+        content: "divide-none",
+        body: "pb-4 sm:pb-8 pt-0 sm:pt-0",
+      },
+    },
+    authForm: {
+      slots: {
+        input: "focus-visible:ring-neutral",
+
       },
     },
     separator: {
