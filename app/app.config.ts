@@ -1,4 +1,11 @@
 export default defineAppConfig({
+  global: {
+    picture: {
+      dark: "https://github.com/anhtran2204.png",
+      light: "https://github.com/anhtran2204.png",
+      alt: "My profile picture",
+    },
+  },
   ui: {
     pageHero: {
       slots: {
@@ -15,14 +22,12 @@ export default defineAppConfig({
     },
     pageSection: {
       slots: {
-        header: "flex flex-col justify-center items-center",
-        leading: "",
         leadingIcon: "size-6 text-info",
       },
       variants: {
         headline: {
           true: {
-            headline: "mb-5 inline-flex items-center gap-2 bg-blue-300 text-blue-700 px-4 py-2 rounded-full text-sm font-medium",
+            headline: "mb-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium",
           },
         },
       },
@@ -31,17 +36,9 @@ export default defineAppConfig({
       slots: {
         root: "rounded-none",
       },
-      variants: {
-        variant: {
-          soft: {
-            root: "bg-linear-to-b from-sky-900 via-blue-950 to-slate-950",
-          },
-        },
-      },
     },
     pageFeature: {
       slots: {
-        leading: "w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center flex-shrink-0",
         leadingIcon: "text-info",
       },
     },
@@ -64,15 +61,12 @@ export default defineAppConfig({
     authForm: {
       slots: {
         input: "focus-visible:ring-neutral",
-
       },
     },
-    separator: {
+    input: {
       variants: {
-        color: {
-          info: {
-            border: "border-info/25",
-          },
+        variant: {
+          outline: "bg-inherit",
         },
       },
     },

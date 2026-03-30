@@ -15,7 +15,10 @@ defineProps<{
         icon: 'i-lucide-arrow-left',
         class: 'rounded-full',
       }"
-      :error="error"
+      :error="{
+        statusCode: error.status,
+        statusMessage: error.statusText,
+      }"
     />
   </NuxtLayout>
 </template>

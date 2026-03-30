@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/hints",
     "@nuxt/fonts",
+    "@nuxt/content",
   ],
   app: {
     pageTransition: { name: "page", mode: "out-in" },
