@@ -5,7 +5,7 @@ const links = ref<ButtonProps[]>([
   {
     label: "Get started",
     color: "info",
-    to: "/signup",
+    to: "/sign_up",
   },
   {
     label: "Learn more",

@@ -7,9 +7,9 @@
           Track. Train. Transform.
         </div>
       </div>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted text-center">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted text-center">
         A smarter way to train and eat
-      </h2>
+      </h1>
       <div class="text-base sm:text-lg text-muted text-center text-balance mt-6">
         Elevate your fitness journey with intelligent workout tracking, personalized nutrition planning, and performance analytics—all in one platform built to push you further every day.
       </div>
@@ -17,7 +17,7 @@
     <div>
       <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center">
         <NuxtButton
-          to="/sign_up"
+          to="/login"
           size="xl"
           variant="solid"
           icon="i-lucide-square-play"

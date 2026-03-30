@@ -1,9 +1,10 @@
 <script setup lang="ts">
-type Star = {
+// eslint-disable-next-line ts/consistent-type-definitions
+interface Star {
   x: number;
   y: number;
   size: number;
-};
+}
 
 const props = withDefaults(defineProps<{
   starCount?: number;
@@ -11,9 +12,9 @@ const props = withDefaults(defineProps<{
   speed?: "slow" | "normal" | "fast";
   size?: { min: number; max: number };
 }>(), {
-  starCount: 800,
+  starCount: 300,
   color: "var(--ui-info)",
-  speed: "fast",
+  speed: "normal",
   size: () => ({
     min: 1,
     max: 2,
@@ -21,20 +22,22 @@ const props = withDefaults(defineProps<{
 });
 
 // Generate random star positions and sizes
-function generateStars(count: number): Star[] {
-  return Array.from({ length: count }).fill({
+// eslint-disable-next-line antfu/top-level-function
+const generateStars = (count: number): Star[] => {
+  // eslint-disable-next-line e18e/prefer-array-fill
+  return Array.from({ length: count }, () => ({
     x: Math.floor(Math.random() * 2000),
     y: Math.floor(Math.random() * 2000),
     size: typeof props.size === "number"
       ? props.size
       : Math.random() * (props.size.max - props.size.min) + props.size.min,
-  }) as Star[];
-}
+  }));
+};
 
 // Define speed configurations once
 const speedMap = {
-  slow: { duration: 200, opacity: 0.5, ratio: 0.25 },
-  normal: { duration: 150, opacity: 0.75, ratio: 0.35 },
+  slow: { duration: 200, opacity: 0.5, ratio: 0.3 },
+  normal: { duration: 150, opacity: 0.75, ratio: 0.3 },
   fast: { duration: 100, opacity: 1, ratio: 0.4 },
 };
 

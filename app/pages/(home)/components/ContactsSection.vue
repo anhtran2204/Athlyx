@@ -43,16 +43,25 @@ const features = ref<PageFeatureProps[]>([
     title: "Email Us",
     description: "anhphantran2002@gmail.com",
     icon: "lucide:mail",
+    ui: {
+      leading: "w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center flex-shrink-0",
+    },
   },
   {
     title: "Call Us",
     description: "+1 (214) 892-1912",
     icon: "lucide:phone",
+    ui: {
+      leading: "w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center flex-shrink-0",
+    },
   },
   {
     title: "Visit Us",
     description: "1821 Arbor Creek Dr, Garland, TX 75040",
     icon: "lucide:map-pin",
+    ui: {
+      leading: "w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center flex-shrink-0",
+    },
   },
 ]);
 </script>
@@ -64,6 +73,8 @@ const features = ref<PageFeatureProps[]>([
     description="Have questions? We'd love to hear from you."
     :ui="{
       container: 'gap-0 sm:gap-0 pb-4 sm:pb-8 lg:pb-16',
+      headline: 'bg-elevated/75 text-info',
+      header: 'flex flex-col justify-center items-center',
     }"
   >
     <NuxtPageSection
@@ -156,7 +167,7 @@ const features = ref<PageFeatureProps[]>([
           type="submit"
           trailing-icon="lucide:arrow-right"
           color="info"
-          class="w-full hover:cursor-pointer flex justify-center items-center text-center p-4 rounded-md"
+          class="w-full hover:cursor-pointer flex justify-center items-center text-center p-2 rounded-md"
         >
           Send Message
         </NuxtButton>

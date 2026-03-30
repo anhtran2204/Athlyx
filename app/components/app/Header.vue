@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { LazyAuthForm } from "#components";
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const route = useRoute();
-const overlay = useOverlay();
-const modal = overlay.create(LazyAuthForm);
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
@@ -23,21 +20,24 @@ const items = computed<NavigationMenuItem[]>(() => [
     active: route.fullPath === "/info",
   },
 ]);
-
-async function openModal(type: string) {
-  await modal.open({ authType: type });
-}
 </script>
 
 <template>
   <NuxtHeader class="border-0">
     <template #left>
-      <Logo class="h-6 w-auto -ml-4" />
+      <Logo to="/" class="h-6 w-auto -ml-4" />
     </template>
 
-    <template #default>
+    <LazyNuxtNavigationMenu
+      highlight
+      highlight-color="info"
+      :items="items"
+    />
+
+    <template #body>
       <div class="flex gap-1">
-        <NuxtNavigationMenu
+        <LazyNuxtNavigationMenu
+          orientation="vertical"
           highlight
           highlight-color="info"
           :items="items"
@@ -56,18 +56,18 @@ async function openModal(type: string) {
         </template>
       </NuxtColorModeButton>
       <NuxtButton
+        to="/login"
         variant="ghost"
         color="neutral"
         class="cursor-pointer text-muted hover:text-highlighted hover:bg-elevated/50 active:bg-elevated/50"
-        @click="openModal('login')"
       >
         Sign In
       </NuxtButton>
       <NuxtButton
+        to="/sign_up"
         variant="ghost"
         color="info"
         class="cursor-pointer text-muted hover:text-info"
-        @click="openModal('sign_up')"
       >
         Get Started
       </NuxtButton>

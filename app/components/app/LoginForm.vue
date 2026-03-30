@@ -1,14 +1,49 @@
 <script setup lang="ts">
 import type { AuthFormField } from "@nuxt/ui";
-import type { ZodObject } from "zod";
+import z from "zod";
 
-const props = defineProps<{
-  schema: ZodObject;
-  fields: AuthFormField[];
-  providers: object[];
-}>();
+const toast = useToast();
 
-const emit = defineEmits<{ switchForm: [string] }>();
+const fields: AuthFormField[] = [{
+  name: "email",
+  type: "email",
+  label: "Email",
+  color: "neutral",
+  placeholder: "Enter your email",
+  required: true,
+}, {
+  name: "password",
+  type: "password",
+  label: "Password",
+  color: "neutral",
+  placeholder: "Enter your password",
+  required: true,
+}, {
+  name: "remember",
+  type: "checkbox",
+  label: "Remember me",
+  color: "info",
+}];
+
+const providers = [{
+  label: "Google",
+  icon: "i-simple-icons-google",
+  onClick: () => {
+    toast.add({ title: "Google", description: "Login with Google" });
+  },
+}, {
+  label: "GitHub",
+  icon: "i-simple-icons-github",
+  onClick: () => {
+    toast.add({ title: "GitHub", description: "Login with GitHub" });
+  },
+}];
+
+const schema = z.object({
+  email: z.email("Invalid email"),
+  password: z.string("Password is required").min(8, "Must be at least 8 characters"),
+});
+
 const error = ref("");
 </script>
 
@@ -22,30 +57,31 @@ const error = ref("");
       }"
     >
       <NuxtAuthForm
-        :schema="props.schema"
-        :fields="props.fields"
-        :providers="props.providers"
+        :schema="schema"
+        :fields="fields"
+        :providers="providers"
         title="Welcome back!"
         icon="i-lucide-lock"
         :submit="{
           label: 'Login',
           color: 'info',
         }"
+        @submit.prevent="navigateTo('/dashboard')"
       >
         <template #description>
           Don't have an account?
           <NuxtLink
+            to="/sign_up"
             class="text-info font-medium hover:cursor-pointer"
-            @click.prevent="emit('switchForm', 'sign_up')"
           >
             Sign up
           </NuxtLink>.
         </template>
         <template #password-hint>
           <NuxtLink
+            to="/password_reset"
             class="text-info font-medium hover:cursor-pointer"
             tabindex="-1"
-            @click.prevent="emit('switchForm', 'password_reset')"
           >
             Forgot password?
           </NuxtLink>
@@ -53,7 +89,7 @@ const error = ref("");
         <template
           #validation
         >
-          <NuxtAlert
+          <LazyNuxtAlert
             v-if="error"
             color="error"
             icon="i-lucide-info"

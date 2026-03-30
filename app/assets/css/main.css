@@ -2,19 +2,21 @@
 @plugin "daisyui";
 @import "@nuxt/ui";
 
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.75s ease-in-out;
+.page-enter-active {
+  transition: opacity 2s ease-in-out;
 }
 
-.page-enter-from,
-.page-leave-to {
+.page-enter-from {
   opacity: 0;
 }
 
 .dark {
   .dark\:bg-main {
     @apply bg-radial from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
+  }
+
+  .dark\:bg-dashboard {
+    @apply bg-radial from-sky-900 from-10% via-blue-900 via-25% to-slate-900 to-65%;
   }
 
   .dark\:bg-features {
@@ -24,11 +26,19 @@
   .dark\:bg-about {
     @apply bg-linear-to-br from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
   }
+
+  .dark\:bg-tracking {
+    @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%;
+  }
 }
 
 .light {
   .light\:bg-main {
     @apply bg-radial from-sky-300 from-10% via-blue-300 via-25% to-white to-65%;
+  }
+
+  .dark\:bg-dashboard {
+    @apply bg-radial from-sky-300 from-10% via-blue-300 via-25% to-gray-200 to-65%;
   }
 
   .light\:bg-features {
@@ -38,14 +48,19 @@
   .light\:bg-about {
     @apply bg-linear-to-br from-sky-300 from-10% via-blue-300 via-25% to-white to-65%;
   }
+
+  .light\:bg-tracking {
+    @apply bg-linear-to-br from-cyan-500 from-10% via-sky-500 via-25% to-blue-600 to-65%;
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+  }
 }
 
 .bg-main {
   @apply bg-radial from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
 }
 
-.bg-secondary {
-  @apply bg-radial from-sky-900 from-10% via-blue-950 via-25% to-white to-65%;
+.bg-dashboard {
+  @apply bg-radial from-sky-900 from-10% via-blue-900 via-25% to-slate-900 to-65%;
 }
 
 .bg-features {
@@ -56,6 +71,17 @@
   @apply bg-linear-to-br from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
 }
 
+.bg-tracking {
+  @apply bg-linear-to-br from-cyan-500 from-10% via-sky-500 via-25% to-blue-600 to-65%;
+  /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+}
+
 .header-blur {
   @apply mask-b-from-100% mask-b-to-100% shadow-lg;
+}
+
+#who-i-am,
+#how-athlyx-came-to-be,
+#the-goal {
+  @apply dark:text-sky-400 light:text-sky-900;
 }

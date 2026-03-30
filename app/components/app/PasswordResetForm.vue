@@ -43,7 +43,7 @@ const schema = z.object({
         <template
           #validation
         >
-          <NuxtAlert
+          <LazyNuxtAlert
             v-if="error"
             color="error"
             icon="i-lucide-info"
