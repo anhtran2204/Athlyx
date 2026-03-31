@@ -8,7 +8,7 @@ const route = useRoute();
     :class="{
       'light:bg-main dark:bg-main': route.fullPath === '/',
       'light:bg-features dark:bg-features': route.fullPath === '/features',
-      'light:bg-about dark:bg-about': route.fullPath === '/info',
+      'light:bg-about dark:bg-about': route.fullPath === '/about',
     }"
   >
     <Header class="bg-transparent" />
