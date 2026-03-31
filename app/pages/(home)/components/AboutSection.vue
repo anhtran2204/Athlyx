@@ -1,15 +1,10 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData("about", () => {
-  return queryCollection("about").path("/about").first();
-});
+import { withoutTrailingSlash } from "ufo";
 
-if (!page.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+const route = useRoute();
+const { data: page } = await useAsyncData("about", () => {
+  return queryCollection("about").path(withoutTrailingSlash(route.path)).first();
+});
 
 const { global } = useAppConfig();
 
@@ -49,12 +44,12 @@ useSeoMeta({
         }"
       />
     </LazyNuxtPageSection>
-    <NuxtPageSection
+    <LazyNuxtPageSection
       :ui="{
         container: '!pt-0 !pb-0',
       }"
     >
       <LazyContentRenderer v-if="page" :value="page" />
-    </NuxtPageSection>
+    </LazyNuxtPageSection>
   </div>
 </template>

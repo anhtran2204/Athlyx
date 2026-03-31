@@ -46,6 +46,12 @@ export default defineNuxtConfig({
       ],
     },
   },
+  nitro: {
+    prerender: {
+      crawlLinks: true, // Automatically crawls links in your content to find pages
+      routes: ["/about"], // Explicitly tell Nuxt to generate the about page
+    },
+  },
   eslint: {
     config: {
       standalone: false,

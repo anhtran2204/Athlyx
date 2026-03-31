@@ -16,8 +16,8 @@ const items = computed<NavigationMenuItem[]>(() => [
   },
   {
     label: "About",
-    to: "/info",
-    active: route.fullPath === "/info",
+    to: "/about",
+    active: route.fullPath === "/about",
   },
 ]);
 </script>

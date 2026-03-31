@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  path: "/info",
+  path: "/about",
 });
 </script>
 
