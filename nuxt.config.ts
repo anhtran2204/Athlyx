@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-vitalizer",
   ],
+  css: ["~~/app/assets/css/main.css"],
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
