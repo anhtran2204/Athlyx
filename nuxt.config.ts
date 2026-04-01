@@ -11,11 +11,12 @@ export default defineNuxtConfig({
     "@nuxt/hints",
     "@nuxt/fonts",
     "@nuxt/content",
+    "@nuxt/image",
+    "nuxt-vitalizer",
   ],
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
-  css: ["~~/app/assets/css/main.css"],
   ui: {
     prefix: "Nuxt",
   },
@@ -45,12 +46,20 @@ export default defineNuxtConfig({
         "@vue/devtools-kit",
       ],
     },
+    build: {
+      modulePreload: false,
+    },
   },
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
       routes: ["/about"], // Explicitly tell Nuxt to generate the about page
     },
+  },
+  vitalizer: {
+    // Remove the render-blocking entry CSS
+    disableStylesheets: "entry",
+    disablePrefetchLinks: true,
   },
   eslint: {
     config: {

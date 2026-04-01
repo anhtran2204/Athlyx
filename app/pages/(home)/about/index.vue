@@ -7,10 +7,10 @@ definePageMeta({
 <template>
   <div class="min-w-full container">
     <div id="about">
-      <AboutSection />
+      <LazyAboutSection />
     </div>
     <div id="contacts">
-      <ContactsSection />
+      <LazyContactsSection />
     </div>
   </div>
 </template>
