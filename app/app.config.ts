@@ -1,8 +1,8 @@
 export default defineAppConfig({
   global: {
     picture: {
-      dark: "https://github.com/anhtran2204.png",
-      light: "https://github.com/anhtran2204.png",
+      dark: "../profile.webp",
+      light: "../profile.webp",
       alt: "My profile picture",
     },
   },

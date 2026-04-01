@@ -28,7 +28,7 @@ const items = computed<NavigationMenuItem[]>(() => [
       <Logo to="/" class="h-6 w-auto -ml-4" />
     </template>
 
-    <LazyNuxtNavigationMenu
+    <NuxtNavigationMenu
       highlight
       highlight-color="info"
       :items="items"
@@ -36,7 +36,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 
     <template #body>
       <div class="flex gap-1">
-        <LazyNuxtNavigationMenu
+        <NuxtNavigationMenu
           orientation="vertical"
           highlight
           highlight-color="info"
