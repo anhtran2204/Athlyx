@@ -59,8 +59,8 @@ export default defineNuxtConfig({
   },
   vitalizer: {
     // Remove the render-blocking entry CSS
-    disableStylesheets: "entry",
-    disablePrefetchLinks: true,
+    // disableStylesheets: "entry",
+    // disablePrefetchLinks: true,
   },
   eslint: {
     config: {
