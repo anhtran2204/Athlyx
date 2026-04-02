@@ -39,7 +39,7 @@ export default defineAppConfig({
     },
     pageFeature: {
       slots: {
-        leadingIcon: "text-info",
+        leadingIcon: "text-inherit",
       },
     },
     pageCard: {
