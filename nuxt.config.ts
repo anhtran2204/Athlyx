@@ -57,7 +57,11 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
-      routes: ["/about"], // Explicitly tell Nuxt to generate the about page
+      routes: [
+        "/about",
+        "/_ipx/f_webp&s_220x293/profile.webp",
+        "/_ipx/f_webp&s_440x586/profile.webp",
+      ], // Explicitly tell Nuxt to generate the about page
     },
   },
   vitalizer: {
