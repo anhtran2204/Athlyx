@@ -2,8 +2,10 @@
 import { withoutTrailingSlash } from "ufo";
 
 const route = useRoute();
-const { data: page } = await useAsyncData("about", () => {
+const { data: page, status: pageStatus } = await useAsyncData("about", () => {
   return queryCollection("about").path(withoutTrailingSlash(route.path)).first();
+}, {
+  lazy: true,
 });
 
 const { global } = useAppConfig();
@@ -15,7 +17,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <div v-if="page" lazy>
+  <NuxtLoadingIndicator v-if="pageStatus === 'pending'" />
+  <div v-else-if="page">
     <NuxtPageSection
       headline="About Us"
       :ui="{
@@ -28,7 +31,7 @@ useSeoMeta({
       :description="page.description"
       orientation="vertical"
       :ui="{
-        container: 'lg:flex sm:flex-row justify-between items-start !pt-0 !pb-0',
+        container: 'lg:flex sm:flex-row justify-between items-center !pt-0 !pb-0',
         title: '!mx-0 text-left',
         description: '!mx-0 text-left',
         links: 'justify-start',
@@ -47,7 +50,6 @@ useSeoMeta({
         src="/profile.webp"
         :alt="global.picture?.alt!"
         width="220"
-        height="220"
         class="sm:rotate-4 rounded-lg ring ring-default ring-offset-3 ring-offset-bg mr-6"
       />
     </NuxtPageSection>
@@ -59,5 +61,4 @@ useSeoMeta({
       <LazyContentRenderer v-if="page" :value="page" />
     </NuxtPageSection>
   </div>
-  <NuxtLoadingIndicator v-else />
 </template>

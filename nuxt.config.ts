@@ -14,9 +14,12 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-vitalizer",
   ],
-  css: ["~~/app/assets/css/main.css"],
+  // css: ["~~/app/assets/css/main.css"],
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+  },
+  features: {
+    inlineStyles: true, // or a function to determine inlining
   },
   ui: {
     prefix: "Nuxt",
@@ -59,8 +62,8 @@ export default defineNuxtConfig({
   },
   vitalizer: {
     // Remove the render-blocking entry CSS
-    // disableStylesheets: "entry",
-    // disablePrefetchLinks: true,
+    disableStylesheets: "entry",
+    disablePrefetchLinks: true,
   },
   eslint: {
     config: {

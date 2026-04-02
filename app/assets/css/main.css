@@ -20,15 +20,44 @@
   }
 
   .dark\:bg-features {
-    @apply bg-linear-to-tr from-blue-950 from-10% via-sky-700 via-25% to-slate-950 to-65%;
+    /* @apply bg-linear-to-tr from-blue-950 from-10% via-sky-900 via-25% to-slate-950 to-65%; */
+    @apply bg-linear-to-br from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
   }
 
   .dark\:bg-about {
     @apply bg-linear-to-br from-sky-900 from-10% via-blue-950 via-25% to-slate-950 to-65%;
   }
 
-  .dark\:bg-tracking {
-    @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%;
+  .dark\:bg-cta {
+    @apply bg-linear-to-br from-sky-950 via-blue-950 to-slate-950;
+  }
+
+  .dark\:bg-workout {
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+    @apply bg-linear-to-br from-cyan-500 via-cyan-700 to-slate-900;
+  }
+
+  .dark\:bg-nutrition {
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+    @apply bg-linear-to-br from-purple-500 to-blue-700;
+  }
+
+  .dark\:bg-analytics {
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+    @apply bg-linear-to-br from-sky-500 via-blue-600 to-indigo-600;
+  }
+
+  .dark\:bg-workout-card {
+    @apply bg-linear-to-br from-cyan-200/65 to-blue-200/65 border-2 border-cyan-400;
+  }
+
+  .dark\:bg-nutrition-card {
+    @apply bg-linear-to-br from-purple-200/65 to-blue-200/65 border-2 border-purple-400;
+  }
+
+  .dark\:bg-analytics-card {
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+    @apply bg-linear-to-br from-blue-200 to-indigo-200 border-2 border-blue-400;
   }
 }
 
@@ -37,7 +66,7 @@
     @apply bg-radial from-sky-300 from-10% via-blue-300 via-25% to-white to-65%;
   }
 
-  .dark\:bg-dashboard {
+  .light\:bg-dashboard {
     @apply bg-radial from-sky-300 from-10% via-blue-300 via-25% to-gray-200 to-65%;
   }
 
@@ -49,9 +78,35 @@
     @apply bg-linear-to-br from-sky-300 from-10% via-blue-300 via-25% to-white to-65%;
   }
 
-  .light\:bg-tracking {
+  .light\:bg-cta {
+    @apply bg-linear-to-br from-sky-300 via-blue-300 to-slate-300;
+  }
+
+  .light\:bg-workout {
     @apply bg-linear-to-br from-cyan-500 from-10% via-sky-500 via-25% to-blue-600 to-65%;
     /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+  }
+
+  .light\:bg-nutrition {
+    @apply bg-linear-to-br from-purple-500 to-blue-700;
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+  }
+
+  .light\:bg-analytics {
+    @apply bg-linear-to-br from-cyan-500 from-10% via-sky-500 via-25% to-blue-600 to-65%;
+    /* @apply bg-linear-to-br from-blue-700 from-10% via-blue-800 via-25% to-slate-900 to-65%; */
+  }
+
+  .light\:bg-workout-card {
+    @apply bg-linear-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200;
+  }
+
+  .light\:bg-nutrition-card {
+    @apply bg-linear-to-br from-purple-100 to-blue-100 border-2 border-purple-300;
+  }
+
+  .light\:bg-analytics-card {
+    @apply bg-linear-to-br from-blue-100 to-indigo-100 border-2 border-blue-200;
   }
 }
 

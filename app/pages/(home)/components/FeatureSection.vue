@@ -109,7 +109,7 @@ const cards = ref([
     <NuxtPageSection
       title="Three Pillars of Success"
       headline="Core Features"
-      description="Master fitness, nutrition, and analytics to achieve your ultimate athletic potential."
+      description="Athlyx boasts a wide range of features while retaining its core simplicity and focusing on three pillars: workout logging, diet planning, and analyzing those metrics. Browse through the list of features below and see how they can help you stay motivated and reach your fitness goals.."
       :ui="{
         headline: 'bg-cyan-200 text-sky-700',
         header: 'flex flex-col justify-center items-center',
@@ -122,11 +122,12 @@ const cards = ref([
       orientation="horizontal"
       :features="workoutTrackingFeatures"
       :ui="{
-        leading: 'w-12 h-12 light:bg-tracking dark:bg-tracking rounded-xl flex items-center justify-center flex-shrink-0',
+        leading: 'w-12 h-12 light:bg-workout dark:bg-workout rounded-xl flex items-center justify-center flex-shrink-0',
         leadingIcon: 'text-white',
+        features: 'light:text-cyan-700 dark:text-cyan-600',
       }"
     >
-      <NuxtPageFeature />
+      <WorkoutFeatureCard />
     </NuxtPageSection>
     <NuxtPageSection
       title="Smart Nutrition Planning"
@@ -136,11 +137,12 @@ const cards = ref([
       reverse
       :features="nutritionTrackingFeatures"
       :ui="{
-        leading: 'w-12 h-12 light:bg-tracking dark:bg-tracking rounded-xl flex items-center justify-center flex-shrink-0',
+        leading: 'w-12 h-12 light:bg-nutrition dark:bg-nutrition rounded-xl flex items-center justify-center flex-shrink-0',
         leadingIcon: 'text-white',
+        features: 'light:text-purple-700 dark:text-purple-600',
       }"
     >
-      <NuxtPageFeature />
+      <NutritionFeatureCard />
     </NuxtPageSection>
     <NuxtPageSection
       title="Data-Driven Analytics"
@@ -149,11 +151,12 @@ const cards = ref([
       orientation="horizontal"
       :features="analyticsFeatures"
       :ui="{
-        leading: 'w-12 h-12 light:bg-tracking dark:bg-tracking rounded-xl flex items-center justify-center flex-shrink-0',
+        leading: 'w-12 h-12 light:bg-analytics dark:bg-analytics rounded-xl flex items-center justify-center flex-shrink-0',
         leadingIcon: 'text-white',
+        features: 'light:text-blue-700 dark:text-blue-500',
       }"
     >
-      <NuxtPageFeature />
+      <AnalyticsFeatureCard />
     </NuxtPageSection>
     <NuxtPageSection
       title="Take control of your productivity"
