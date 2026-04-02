@@ -57,11 +57,12 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
-      routes: [
-        "/about",
-        "/_ipx/f_webp&s_640x100/profile.webp",
-      ], // Explicitly tell Nuxt to generate the about page
+      routes: ["/about"], // Explicitly tell Nuxt to generate the about page
     },
+  },
+  image: {
+    provider: "vercel",
+    // If you are using vercel provider, you don't need ipx
   },
   vitalizer: {
     // Remove the render-blocking entry CSS

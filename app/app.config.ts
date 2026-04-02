@@ -1,11 +1,4 @@
 export default defineAppConfig({
-  global: {
-    picture: {
-      dark: "../profile.webp",
-      light: "../profile.webp",
-      alt: "My profile picture",
-    },
-  },
   ui: {
     pageHero: {
       slots: {
