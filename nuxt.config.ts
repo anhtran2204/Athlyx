@@ -60,6 +60,10 @@ export default defineNuxtConfig({
       routes: ["/about"], // Explicitly tell Nuxt to generate the about page
     },
   },
+  image: {
+    provider: "vercel",
+    // If you are using vercel provider, you don't need ipx
+  },
   vitalizer: {
     // Remove the render-blocking entry CSS
     disableStylesheets: "entry",

@@ -8,8 +8,6 @@ const { data: page, status: pageStatus } = await useAsyncData("about", () => {
   lazy: true,
 });
 
-const { global } = useAppConfig();
-
 useSeoMeta({
   title: page.value?.seo?.title || page.value?.title,
   description: page.value?.seo?.description || page.value?.description,
@@ -47,9 +45,12 @@ useSeoMeta({
         }"
       /> -->
       <NuxtImg
-        src="/profile.webp"
-        :alt="global.picture?.alt!"
+        src="https://github.com/anhtran2204.png"
+        alt="My profile picture"
+        :preload="{ fetchPriority: 'high' }"
         width="220"
+        height="293"
+        format="webp"
         class="sm:rotate-4 rounded-lg ring ring-default ring-offset-3 ring-offset-bg mr-6"
       />
     </NuxtPageSection>
