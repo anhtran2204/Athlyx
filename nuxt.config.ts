@@ -50,9 +50,9 @@ export default defineNuxtConfig({
         "@vue/devtools-kit",
       ],
     },
-    // build: {
-    //   modulePreload: false,
-    // },
+    build: {
+      modulePreload: false,
+    },
   },
   nitro: {
     prerender: {
