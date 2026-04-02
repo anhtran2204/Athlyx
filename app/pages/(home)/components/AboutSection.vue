@@ -49,8 +49,7 @@ useSeoMeta({
       <NuxtImg
         src="/profile.webp"
         :alt="global.picture?.alt!"
-        :preload="{ fetchPriority: 'high' }"
-        width="250"
+        width="220"
         class="sm:rotate-4 rounded-lg ring ring-default ring-offset-3 ring-offset-bg mr-6"
       />
     </NuxtPageSection>
