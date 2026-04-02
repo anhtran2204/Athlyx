@@ -45,7 +45,7 @@ useSeoMeta({
         }"
       /> -->
       <NuxtImg
-        src="/profile.webp"
+        src="https://github.com/anhtran2204.png"
         alt="My profile picture"
         :preload="{ fetchPriority: 'high' }"
         width="220"
