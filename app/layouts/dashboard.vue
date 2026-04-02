@@ -4,23 +4,41 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 const items: NavigationMenuItem[][] = [[{
   label: "Home",
   icon: "i-lucide-house",
-  active: true,
+  to: "/dashboard",
+  exact: true,
+}, {
+  label: "Health",
+  icon: "lucide:heart-pulse",
+  to: "/dashboard/health",
 }, {
   label: "Workouts",
   icon: "lucide:dumbbell",
+  to: "/dashboard/workout",
 }, {
   label: "Nutrition",
   icon: "lucide:utensils",
+  to: "/dashboard/nutrition",
 }, {
   label: "Settings",
   icon: "i-lucide-settings",
   defaultOpen: true,
   children: [{
     label: "General",
+    icon: "lucide:sliders-horizontal",
+    to: "/dashboard/settings",
+    exact: true,
   }, {
-    label: "Notifications",
+    label: "Profile",
+    icon: "lucide:user",
+    to: "/dashboard/settings/profile",
   }, {
     label: "Membership",
+    icon: "lucide:credit-card",
+    to: "/dashboard/settings/membership",
+  }, {
+    label: "Notifications",
+    icon: "lucide:bell",
+    to: "/dashboard/settings/notifications",
   }],
 }], [{
   label: "Feedback",
@@ -74,7 +92,7 @@ const items: NavigationMenuItem[][] = [[{
             src: 'https://github.com/anhtran2204.png',
             loading: 'lazy' as const,
           }"
-          :label="collapsed ? undefined : 'Benjamin'"
+          :label="collapsed ? undefined : 'Anh Tran'"
           color="neutral"
           variant="ghost"
           class="w-full"

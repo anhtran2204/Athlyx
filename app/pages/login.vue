@@ -7,7 +7,6 @@ definePageMeta({
 });
 
 const layout = "user-auth";
-const router = useRouter();
 </script>
 
 <template>
@@ -15,7 +14,7 @@ const router = useRouter();
     <NuxtLayout :name="layout">
       <ClientOnly>
         <div class="grow max-w-120 mx-auto my-auto py-2 sm:py-4 px-2 sm:px-4 rounded-2xl bg-default ring ring-accented flex flex-col gap-2">
-          <div>
+          <!-- <div>
             <NuxtButton
               color="info"
               variant="ghost"
@@ -23,7 +22,7 @@ const router = useRouter();
               class="hover:cursor-pointer"
               @click="router.back"
             />
-          </div>
+          </div> -->
           <LoginForm />
         </div>
       </ClientOnly>

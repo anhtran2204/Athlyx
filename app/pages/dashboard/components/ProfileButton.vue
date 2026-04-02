@@ -16,14 +16,17 @@ const items = ref<DropdownMenuItem[][]>([
     {
       label: "Profile",
       icon: "i-lucide-user",
+      to: "/dashboard/profile",
     },
     {
-      label: "Billing",
+      label: "Membership",
       icon: "i-lucide-credit-card",
+      to: "/dashboard/settings/membership",
     },
     {
       label: "Settings",
       icon: "i-lucide-settings",
+      to: "/dashboard/settings",
       kbds: [","],
     },
     {

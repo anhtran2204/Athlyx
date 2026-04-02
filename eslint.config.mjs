@@ -38,6 +38,7 @@ export default withNuxt(
           kebabCase: true,
           camelCase: true,
           pascalCase: true,
+          snakeCase: true,
         },
         ignore: ["README.md"],
       }],

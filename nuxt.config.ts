@@ -61,8 +61,9 @@ export default defineNuxtConfig({
     },
   },
   image: {
-    provider: "vercel",
-    // If you are using vercel provider, you don't need ipx
+    github: {
+      baseURL: "https://avatars.githubusercontent.com/",
+    },
   },
   vitalizer: {
     // Remove the render-blocking entry CSS
