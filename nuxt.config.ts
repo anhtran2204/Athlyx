@@ -59,6 +59,7 @@ export default defineNuxtConfig({
       crawlLinks: true, // Automatically crawls links in your content to find pages
       routes: [
         "/about",
+        "/_ipx/f_webp&s_640x100/profile.webp",
       ], // Explicitly tell Nuxt to generate the about page
     },
   },
