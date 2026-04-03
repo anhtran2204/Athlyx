@@ -66,7 +66,7 @@ const items: NavigationMenuItem[][] = [
           :items="items"
           highlight
           highlight-color="info"
-          class="flex-1"
+          class="flex-1 -ms-1"
         />
       </NuxtDashboardToolbar>
     </template>
