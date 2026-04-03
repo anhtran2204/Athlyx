@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
 
-const items: NavigationMenuItem[][] = [[{
+const route = useRoute();
+
+const items = [[{
   label: "Home",
   icon: "i-lucide-house",
   to: "/dashboard",
@@ -50,7 +52,23 @@ const items: NavigationMenuItem[][] = [[{
   icon: "i-lucide-info",
   to: "https://github.com/nuxt/ui",
   target: "_blank",
-}]];
+}]] satisfies NavigationMenuItem[][];
+
+const groups = computed(() => [{
+  id: "links",
+  label: "Go to",
+  items: items.flat(),
+}, {
+  id: "code",
+  label: "Code",
+  items: [{
+    id: "source",
+    label: "View page source",
+    icon: "i-simple-icons-github",
+    to: `https://github.com/anhtran2204/Athlyx/blob/main/app/pages${route.path === "/" ? "/index" : route.path}.vue`,
+    target: "_blank",
+  }],
+}]);
 </script>
 
 <template>
@@ -62,9 +80,14 @@ const items: NavigationMenuItem[][] = [[{
       :ui="{ footer: 'border-t border-default' }"
     >
       <template #header="{ collapsed }">
-        <Logo v-if="!collapsed" class="h-5 w-auto shrink-0" />
+        <Logo
+          v-if="!collapsed"
+          to="/dashboard"
+          class="h-5 w-auto shrink-0"
+        />
         <LazySidebarIcon
           v-else
+          to="/dashboard"
           class="text-primary mx-auto"
         />
       </template>
@@ -76,12 +99,15 @@ const items: NavigationMenuItem[][] = [[{
           :collapsed="collapsed"
           :items="items[0]"
           orientation="vertical"
+          tooltip
+          popover
         />
 
         <NuxtNavigationMenu
           :collapsed="collapsed"
           :items="items[1]"
           orientation="vertical"
+          tooltip
           class="mt-auto"
         />
       </template>
@@ -100,7 +126,7 @@ const items: NavigationMenuItem[][] = [[{
         />
       </template>
     </NuxtDashboardSidebar>
-    <NuxtDashboardSearch />
+    <NuxtDashboardSearch :groups="groups" />
     <slot />
   </NuxtDashboardGroup>
 </template>

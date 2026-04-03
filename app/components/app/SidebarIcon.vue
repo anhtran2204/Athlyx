@@ -12,6 +12,8 @@ const props = defineProps<{
       light="/athlyx-icon-dark.svg"
       dark="/athlyx-icon-light.svg"
       alt="Logo"
+      :width="34"
+      :height="34"
     />
   </NuxtLink>
 </template>
