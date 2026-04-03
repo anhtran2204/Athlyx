@@ -45,6 +45,16 @@ export default defineAppConfig({
         color: "info",
       },
     },
+    dashboardNavbar: {
+      slots: {
+        root: "dark:border-default light:border-slate-400/25",
+      },
+    },
+    dashboardToolbar: {
+      slots: {
+        root: "dark:border-default light:border-slate-400/25",
+      },
+    },
     modal: {
       slots: {
         content: "divide-none",

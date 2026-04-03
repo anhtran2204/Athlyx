@@ -53,7 +53,6 @@ const error = ref("");
       class="w-full max-w-md"
       :ui="{
         root: 'bg-transparent ring-0',
-        container: 'pt-0 sm:pt-0',
       }"
     >
       <NuxtAuthForm

@@ -1,20 +1,14 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: "dashboard",
-  pageTransition: false,
-  layoutTransition: false,
-});
 </script>
 
 <template>
   <NuxtDashboardPanel resizable class="dark:bg-dashboard light:bg-dashboard">
     <template #header>
       <NuxtDashboardNavbar
-        title="Home"
+        title="Nutrition"
         :ui="{
           title: 'text-xl',
         }"
-        class="border-dashed border-accented"
       >
         <template #leading>
           <LazyNuxtDashboardSidebarCollapse />
@@ -25,7 +19,10 @@ definePageMeta({
           <ProfileButton />
         </template>
       </NuxtDashboardNavbar>
+      <NuxtDashboardToolbar />
     </template>
-    <template #body />
+    <template #body>
+      <NuxtPage />
+    </template>
   </NuxtDashboardPanel>
 </template>
