@@ -18,6 +18,8 @@ export default defineNuxtConfig({
     "nuxt-vitalizer",
     "@pinia/nuxt",
     "nuxt-csurf",
+    "@vercel/analytics",
+    "@vercel/speed-insights",
   ],
   // css: ["~~/app/assets/css/main.css"],
   app: {
