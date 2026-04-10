@@ -232,20 +232,18 @@ function selectRange(range: { days?: number; months?: number; years?: number }) 
           />
         </div>
 
-        <ClientOnly>
-          <LazyNuxtCalendar
-            v-model="selected"
-            :number-of-months="2"
-            range
-            color="info"
-            class="p-2"
-            :ui="{
-              header: '[&>button]:hover:cursor-pointer',
-              cell: 'hover:cursor-pointer',
-              headCell: 'hover:cursor-text',
-            }"
-          />
-        </ClientOnly>
+        <LazyNuxtCalendar
+          v-model="selected"
+          :number-of-months="2"
+          range
+          color="info"
+          class="p-2"
+          :ui="{
+            header: '[&>button]:hover:cursor-pointer',
+            cell: 'hover:cursor-pointer',
+            headCell: 'hover:cursor-text',
+          }"
+        />
       </div>
     </template>
   </NuxtPopover>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import type { AuthFormField } from "@nuxt/ui";
+import type { AuthFormField, FormSubmitEvent } from "@nuxt/ui";
 import { z } from "zod";
+import { authClient } from "~~/server/lib/auth-client";
+
+// const authStore = useAuthStore();
 
 const error = ref("");
 const fields: AuthFormField[] = [{
@@ -15,6 +18,23 @@ const fields: AuthFormField[] = [{
 const schema = z.object({
   email: z.email("Invalid email"),
 });
+
+type ResetPassword = z.output<typeof schema>;
+
+async function onSubmit(values: FormSubmitEvent<ResetPassword>) {
+  const token = new URLSearchParams(window.location.search).get("token");
+  if (!token) {
+    // Handle the error
+  }
+  await authClient.requestPasswordReset({
+    email: values.data.email,
+  });
+  // await authStore.resetPassword({
+  //   newPassword:
+  //   token,
+  // });
+  navigateTo("/");
+}
 </script>
 
 <template>
@@ -34,7 +54,7 @@ const schema = z.object({
           label: 'Reset password',
           color: 'info',
         }"
-        @submit.prevent="() => { navigateTo('/password_reset') }"
+        @submit.prevent="onSubmit"
       >
         <template #description>
           Enter your email address and we'll send you a link to reset your password

@@ -18,6 +18,7 @@ defineProps<{
       :error="{
         statusCode: error.status,
         statusMessage: error.statusText,
+        message: error.message,
       }"
     />
   </NuxtLayout>

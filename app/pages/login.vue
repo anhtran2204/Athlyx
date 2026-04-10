@@ -10,11 +10,10 @@ const layout = "user-auth";
 </script>
 
 <template>
-  <div>
-    <NuxtLayout :name="layout">
-      <ClientOnly>
-        <div class="grow max-w-120 mx-auto my-auto py-2 sm:py-4 px-2 sm:px-4 rounded-2xl bg-default ring ring-accented flex flex-col gap-2">
-          <!-- <div>
+  <NuxtLayout :name="layout">
+    <ClientOnly>
+      <div class="grow max-w-120 mx-auto my-auto py-2 sm:py-4 px-2 sm:px-4 rounded-2xl bg-default ring ring-accented flex flex-col gap-2">
+        <!-- <div>
             <NuxtButton
               color="info"
               variant="ghost"
@@ -23,9 +22,8 @@ const layout = "user-auth";
               @click="router.back"
             />
           </div> -->
-          <LoginForm />
-        </div>
-      </ClientOnly>
-    </NuxtLayout>
-  </div>
+        <LazyLoginForm />
+      </div>
+    </ClientOnly>
+  </NuxtLayout>
 </template>

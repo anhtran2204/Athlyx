@@ -64,6 +64,9 @@ const range = shallowRef<Range>({
         :ui="{
           title: 'text-xl',
         }"
+        :toggle="{
+          icon: 'lucide:panel-right-close',
+        }"
       >
         <template #leading>
           <LazyNuxtDashboardSidebarCollapse class="hover:cursor-pointer" />

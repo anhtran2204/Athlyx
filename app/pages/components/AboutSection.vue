@@ -35,15 +35,6 @@ useSeoMeta({
         links: 'justify-start',
       }"
     >
-      <!-- <NuxtColorModeAvatar
-        class="sm:rotate-4 size-55 rounded-lg ring ring-default ring-offset-3 ring-offset-bg"
-        :light="global.picture?.light!"
-        :dark="global.picture?.dark!"
-        :alt="global.picture?.alt!"
-        :ui="{
-          root: 'mr-6',
-        }"
-      /> -->
       <NuxtImg
         provider="github"
         src="anhtran2204"

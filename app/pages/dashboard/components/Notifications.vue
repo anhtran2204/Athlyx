@@ -14,7 +14,7 @@
     </NuxtToolTip>
     <template #content>
       <h1 class="size-48 m-4 inline-flex">
-        Content
+        Notifications
       </h1>
     </template>
   </NuxtPopover>

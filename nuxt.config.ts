@@ -1,6 +1,8 @@
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import "./server/lib/env";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2026-03-21",
@@ -13,6 +15,8 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "nuxt-vitalizer",
+    "@pinia/nuxt",
+    "nuxt-csurf",
   ],
   // css: ["~~/app/assets/css/main.css"],
   app: {
@@ -48,6 +52,16 @@ export default defineNuxtConfig({
       include: [
         "@vue/devtools-core",
         "@vue/devtools-kit",
+        "better-auth/vue",
+        "better-auth",
+        "better-auth/adapters/prisma",
+        "better-auth/api",
+        "zod",
+      ],
+      exclude: [
+        "@prisma/client",
+        "@prisma/adapter-pg",
+        "pg",
       ],
     },
     build: {

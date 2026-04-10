@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  path: "/password_reset",
+  path: "/forget-password",
   layout: false,
   pageTransition: false,
   layoutTransition: false,
@@ -21,7 +21,7 @@ const layout = "user-auth";
             @click="router.back"
           />
         </div> -->
-        <PasswordResetForm />
+        <LazyForgetPasswordForm />
       </div>
     </ClientOnly>
   </NuxtLayout>

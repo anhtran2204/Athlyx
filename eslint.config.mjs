@@ -10,13 +10,15 @@ export default withNuxt(
     type: "app",
     vue: true,
     typescript: true,
-    formatters: true,
+    formatters: {
+      prisma: true,
+    },
     stylistic: {
       indent: 2,
       semi: true,
       quotes: "double",
     },
-    ignores: ["**/*.md"],
+    ignores: ["**/*.md", "**/*.toml", "**/*.yaml"],
   }, {
     rules: {
       "vue/max-attributes-per-line": ["error", {

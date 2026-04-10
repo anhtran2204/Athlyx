@@ -6,7 +6,7 @@ const links = ref<ButtonProps[]>([
     label: "Get started",
     trailingIcon: "lucide:arrow-right",
     color: "info",
-    to: "/sign_up",
+    to: "/sign-up",
   },
 ]);
 </script>
