@@ -9,6 +9,10 @@
     "source.organizeImports": "never"
   },
 
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
   "files.associations": {
     "*.page-template": "vue",
     "*.layout-template": "vue",

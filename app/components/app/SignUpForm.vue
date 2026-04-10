@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import type { AuthFormField } from "@nuxt/ui";
+import type { AuthFormField, FormSubmitEvent } from "@nuxt/ui";
 import z from "zod";
+import { authClient } from "~~/server/lib/auth-client";
 
 const toast = useToast();
-const error = ref("");
 
 const fields: AuthFormField[] = [{
+  name: "name",
+  type: "text",
+  label: "Name",
+  color: "neutral",
+  placeholder: "John Smith",
+  required: true,
+}, {
   name: "email",
   type: "email",
   label: "Email",
   color: "neutral",
-  placeholder: "Enter your email",
+  placeholder: "you@example.com",
   required: true,
 }, {
   name: "password",
   type: "password",
   label: "Password",
   color: "neutral",
-  placeholder: "Enter your password",
+  placeholder: "password123",
   required: true,
-}, {
-  name: "remember",
-  type: "checkbox",
-  label: "Remember me",
 }];
 
 const providers = [{
@@ -40,9 +43,44 @@ const providers = [{
 }];
 
 const schema = z.object({
+  name: z.string("Name is required"),
   email: z.email("Invalid email"),
   password: z.string("Password is required").min(8, "Must be at least 8 characters"),
 });
+
+type SignUpSchema = z.output<typeof schema>;
+
+const error = ref<string | undefined>("");
+const loading = ref(false);
+
+async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
+  loading.value = true;
+  error.value = "";
+  const { csrf } = useCsrf();
+  const headers = new Headers();
+  headers.append("csrf-token", csrf);
+  const result = await authClient.signUp.email({
+    name: values.data.name,
+    email: values.data.email,
+    password: values.data.password,
+    callbackURL: "/login",
+    fetchOptions: {
+      headers,
+    },
+  }, {
+    onSuccess: () => {
+      navigateTo("/login");
+    },
+  });
+  if (result.error) {
+    error.value = result.error.statusText ?? "Something went wrong";
+  }
+  else {
+    toast.add({ title: "Success", description: "Account created.", color: "info" });
+    // console.log("Submitted ", values);
+  }
+  loading.value = false;
+}
 </script>
 
 <template>
@@ -61,7 +99,10 @@ const schema = z.object({
         icon="i-lucide-lock"
         :submit="{
           color: 'info',
+          class: 'hover:cursor-pointer',
+          loading,
         }"
+        @submit.prevent="onSubmit"
       >
         <template #description>
           Already have an account?
@@ -79,7 +120,7 @@ const schema = z.object({
             v-if="error"
             color="error"
             icon="i-lucide-info"
-            title="Error signing in"
+            :title="error"
           />
         </template>
         <template #footer>

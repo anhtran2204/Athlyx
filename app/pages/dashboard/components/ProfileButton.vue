@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
 
+const authStore = useAuthStore();
+
 const items = ref<DropdownMenuItem[][]>([
   [
     {
@@ -16,7 +18,7 @@ const items = ref<DropdownMenuItem[][]>([
     {
       label: "Profile",
       icon: "i-lucide-user",
-      to: "/dashboard/profile",
+      to: "/dashboard/settings/profile",
     },
     {
       label: "Membership",
@@ -163,7 +165,8 @@ const items = ref<DropdownMenuItem[][]>([
       icon: "i-lucide-log-out",
       color: "error",
       kbds: ["shift", "meta", "q"],
-      to: "/",
+      onSelect: authStore.githubSignOut,
+      class: "hover:cursor-pointer",
     },
   ],
 ]);

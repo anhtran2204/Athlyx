@@ -23,7 +23,9 @@ const items = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-  <NuxtHeader class="border-0">
+  <NuxtHeader
+    class="border-0"
+  >
     <template #left>
       <Logo to="/" class="h-6 w-auto -ml-4" />
     </template>
@@ -64,7 +66,7 @@ const items = computed<NavigationMenuItem[]>(() => [
         Sign In
       </NuxtButton>
       <NuxtButton
-        to="/sign_up"
+        to="/sign-up"
         variant="ghost"
         color="info"
         class="cursor-pointer text-muted hover:text-info"

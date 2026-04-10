@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  path: "/sign_up",
+  path: "/sign-up",
   layout: false,
   pageTransition: false,
   layoutTransition: false,
@@ -21,7 +21,7 @@ const layout = "user-auth";
             @click="router.back"
           />
         </div> -->
-        <SignUpForm />
+        <LazySignUpForm />
       </div>
     </ClientOnly>
   </NuxtLayout>

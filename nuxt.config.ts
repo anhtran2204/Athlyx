@@ -4,6 +4,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2026-03-21",
+  future: {
+    compatibilityVersion: 4,
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxt/eslint",
@@ -13,6 +16,8 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "nuxt-vitalizer",
+    "@pinia/nuxt",
+    "nuxt-csurf",
   ],
   // css: ["~~/app/assets/css/main.css"],
   app: {
@@ -48,6 +53,16 @@ export default defineNuxtConfig({
       include: [
         "@vue/devtools-core",
         "@vue/devtools-kit",
+        "better-auth/vue",
+        "better-auth",
+        "better-auth/adapters/prisma",
+        "better-auth/api",
+        "zod",
+      ],
+      exclude: [
+        "@prisma/client",
+        "@prisma/adapter-pg",
+        "pg",
       ],
     },
     build: {
@@ -58,6 +73,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
       routes: ["/about"], // Explicitly tell Nuxt to generate the about page
+      ignore: ["/dashboard"],
     },
   },
   image: {
