@@ -69,12 +69,22 @@ export default defineNuxtConfig({
       modulePreload: false,
     },
   },
+  csurf: {
+    methodsToProtect: ["POST", "PUT", "PATCH", "DELETE"], // the request methods we want CSRF protection for
+    addCsrfTokenToEventCtx: true,
+  },
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
-      routes: ["/about"], // Explicitly tell Nuxt to generate the about page
+      // routes: ["/about"],
       ignore: ["/dashboard"],
     },
+    routeRules: {
+      "/__nuxt_content/**": { csurf: false } as any,
+    },
+  },
+  content: {
+    experimental: { sqliteConnector: "native" },
   },
   image: {
     github: {
