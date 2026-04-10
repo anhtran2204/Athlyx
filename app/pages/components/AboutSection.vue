@@ -1,22 +1,16 @@
 <script setup lang="ts">
-import { withoutTrailingSlash } from "ufo";
-
-const route = useRoute();
 const { data: page, status: pageStatus } = await useAsyncData("about", () => {
-  return queryCollection("about").path(withoutTrailingSlash(route.path)).first();
-}, {
-  lazy: true,
+  return queryCollection("about").path("/about").first();
 });
 
 useSeoMeta({
-  title: page.value?.seo?.title || page.value?.title,
+  title: page.value?.seo?.title || page.value?.title || "About",
   description: page.value?.seo?.description || page.value?.description,
 });
 </script>
 
 <template>
-  <NuxtLoadingIndicator v-if="pageStatus === 'pending'" />
-  <div v-else-if="page">
+  <div v-if="page">
     <NuxtPageSection
       headline="About Us"
       :ui="{
@@ -35,7 +29,7 @@ useSeoMeta({
         links: 'justify-start',
       }"
     >
-      <NuxtImg
+      <LazyNuxtImg
         provider="github"
         src="anhtran2204"
         alt="My profile picture"
@@ -53,5 +47,11 @@ useSeoMeta({
     >
       <LazyContentRenderer v-if="page" :value="page" />
     </NuxtPageSection>
+  </div>
+  <span v-else-if="pageStatus === 'pending'" class="flex py-8 sm:py-16 justify-center items-center">
+    <div class="loading loading-md" />
+  </span>
+  <div v-else class="flex py-8 sm:py-16 justify-center items-center">
+    Content not found
   </div>
 </template>

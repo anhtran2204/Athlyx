@@ -1,11 +1,12 @@
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-import "./server/lib/env";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2026-03-21",
+  future: {
+    compatibilityVersion: 4,
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxt/eslint",
@@ -72,6 +73,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
       routes: ["/about"], // Explicitly tell Nuxt to generate the about page
+      ignore: ["/dashboard"],
     },
   },
   image: {

@@ -47,6 +47,7 @@
     "@nuxt/a11y": "^1.0.0-alpha.1",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/hints": "^1.0.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/pg": "^8.20.0",
     "@v2nic/eslint-plugin-prisma": "^1.2.6",
     "daisyui": "^5.5.19",
