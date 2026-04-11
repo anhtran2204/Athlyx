@@ -72,7 +72,7 @@ export default defineNuxtConfig({
     },
   },
   csurf: {
-    methodsToProtect: ["POST", "PUT", "PATCH", "DELETE"], // the request methods we want CSRF protection for
+    methodsToProtect: ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // the request methods we want CSRF protection for
     addCsrfTokenToEventCtx: true,
   },
   nitro: {
@@ -86,8 +86,10 @@ export default defineNuxtConfig({
       "/api/auth/**": {
         cors: true,
         headers: {
-          "access-control-allow-origin": "https://www.athlyxfit.com",
-          "access-control-allow-methods": "*",
+          "Access-Control-Allow-Origin": "https://www.athlyxfit.com",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true",
         },
       },
     },

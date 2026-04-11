@@ -37,7 +37,6 @@ export const auth = betterAuth({
     "https://www.athlyxfit.com",
     "https://athlyxfit.com",
     "https://athlyx-pro.vercel.app",
-    "http://localhost:3000",
   ],
   emailAndPassword: {
     enabled: true,
