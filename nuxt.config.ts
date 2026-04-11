@@ -83,6 +83,13 @@ export default defineNuxtConfig({
     },
     routeRules: {
       "/__nuxt_content/**": { csurf: false } as any,
+      "/api/auth/**": {
+        cors: true,
+        headers: {
+          "access-control-allow-origin": "https://www.athlyxfit.com",
+          "access-control-allow-methods": "*",
+        },
+      },
     },
   },
   content: {

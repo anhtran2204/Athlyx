@@ -1,8 +1,11 @@
-import { sentinelClient } from "@better-auth/infra/client";
+import { dashClient, sentinelClient } from "@better-auth/infra/client";
 import { createAuthClient } from "better-auth/vue";
 
 export const authClient = createAuthClient({
   plugins: [
-    sentinelClient(),
+    dashClient(),
+    sentinelClient({
+      autoSolveChallenge: true, // Automatically solve PoW challenges
+    }),
   ],
 });

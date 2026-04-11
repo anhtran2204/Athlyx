@@ -10,12 +10,14 @@ import env from "./env";
 
 const prismaClient = prisma;
 export const auth = betterAuth({
+  appName: "Athlyx",
   database: prismaAdapter(prismaClient, {
     provider: "postgresql",
   }),
   session: {
     cookieCache: {
       enabled: true,
+      strategy: "jwe",
       maxAge: 60 * 5,
     },
   },
@@ -23,6 +25,12 @@ export const auth = betterAuth({
     database: {
       generateId: false,
     },
+    ipAddress: {
+      ipAddressHeaders: ["x-vercel-forwarded-for", "x-forwarded-for"],
+    },
+  },
+  experimental: {
+    joins: true, // Enable database joins for better performance
   },
   baseURL: env.BETTER_AUTH_URL,
   trustedOrigins: [
@@ -74,6 +82,8 @@ export const auth = betterAuth({
     }),
   },
   plugins: [
-    dash(),
+    dash({
+      apiKey: env.BETTER_AUTH_API_KEY,
+    }),
   ],
 });
