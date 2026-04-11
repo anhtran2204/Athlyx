@@ -78,7 +78,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
-      // routes: ["/about"],
+      routes: ["/about"],
       ignore: ["/dashboard"],
     },
     routeRules: {
