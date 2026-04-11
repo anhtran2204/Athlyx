@@ -34,9 +34,10 @@ export const auth = betterAuth({
   },
   baseURL: env.BETTER_AUTH_URL,
   trustedOrigins: [
-    "www.athlyxfit.com",
-    "athlyxfit.com",
-    "athlyx-pro.vercel.app",
+    "https://www.athlyxfit.com",
+    "https://athlyxfit.com",
+    "https://athlyx-pro.vercel.app",
+    "http://localhost:3000",
   ],
   emailAndPassword: {
     enabled: true,
