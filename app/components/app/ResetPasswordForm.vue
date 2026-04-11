@@ -11,7 +11,7 @@ const fields: AuthFormField[] = [{
   type: "password",
   label: "New Password",
   color: "neutral",
-  placeholder: "********",
+  placeholder: "••••••••",
   required: true,
 }, {
   name: "new-password",
