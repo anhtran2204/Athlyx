@@ -30,7 +30,7 @@ export const auth = betterAuth({
     },
   },
   experimental: {
-    joins: true, // Enable database joins for better performance
+    joins: true,
   },
   baseURL: env.BETTER_AUTH_URL,
   trustedOrigins: [

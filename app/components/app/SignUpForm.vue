@@ -56,17 +56,17 @@ const loading = ref(false);
 async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
   loading.value = true;
   error.value = "";
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
+  // const { csrf } = useCsrf();
+  // const headers = new Headers();
+  // headers.append("csrf-token", csrf);
   const result = await authClient.signUp.email({
     name: values.data.name,
     email: values.data.email,
     password: values.data.password,
     callbackURL: "/login",
-    fetchOptions: {
-      headers,
-    },
+    // fetchOptions: {
+    //   headers,
+    // },
   }, {
     onSuccess: () => {
       navigateTo("/login");

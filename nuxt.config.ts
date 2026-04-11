@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-vitalizer",
     "@pinia/nuxt",
-    "nuxt-csurf",
+    // "nuxt-csurf",
     "@vercel/analytics",
     "@vercel/speed-insights",
   ],
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
   },
   features: {
-    inlineStyles: true, // or a function to determine inlining
+    inlineStyles: true,
   },
   ui: {
     prefix: "Nuxt",
@@ -71,10 +71,6 @@ export default defineNuxtConfig({
       modulePreload: false,
     },
   },
-  // csurf: {
-  //   methodsToProtect: ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // the request methods we want CSRF protection for
-  //   addCsrfTokenToEventCtx: true,
-  // },
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
@@ -83,15 +79,6 @@ export default defineNuxtConfig({
     },
     routeRules: {
       "/__nuxt_content/**": { csurf: false } as any,
-      "/api/auth/**": {
-        cors: true,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.athlyxfit.com",
-          "Access-Control-Allow-Methods": "*",
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Allow-Credentials": "true",
-        },
-      },
     },
   },
   content: {
@@ -103,7 +90,6 @@ export default defineNuxtConfig({
     },
   },
   vitalizer: {
-    // Remove the render-blocking entry CSS
     disableStylesheets: "entry",
     disablePrefetchLinks: true,
   },
