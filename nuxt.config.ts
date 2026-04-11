@@ -71,10 +71,10 @@ export default defineNuxtConfig({
       modulePreload: false,
     },
   },
-  csurf: {
-    methodsToProtect: ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // the request methods we want CSRF protection for
-    addCsrfTokenToEventCtx: true,
-  },
+  // csurf: {
+  //   methodsToProtect: ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // the request methods we want CSRF protection for
+  //   addCsrfTokenToEventCtx: true,
+  // },
   nitro: {
     prerender: {
       crawlLinks: true, // Automatically crawls links in your content to find pages
