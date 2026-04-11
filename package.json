@@ -35,7 +35,6 @@
     "concurrently": "^9.2.1",
     "date-fns": "^4.1.0",
     "nuxt": "^4.4.2",
-    "nuxt-csurf": "^1.6.5",
     "nuxt-vitalizer": "^2.0.0",
     "pg": "^8.20.0",
     "tailwindcss": "^4.2.1",

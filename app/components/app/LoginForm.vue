@@ -57,17 +57,17 @@ const loading = ref(false);
 async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
   loading.value = true;
   error.value = "";
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
+  // const { csrf } = useCsrf();
+  // const headers = new Headers();
+  // headers.append("csrf-token", csrf);
   const result = await authClient.signIn.email({
     email: values.data.email,
     password: values.data.password,
     rememberMe: values.data.remember || true,
     callbackURL: "/dashboard",
-    fetchOptions: {
-      headers,
-    },
+    // fetchOptions: {
+    //   headers,
+    // },
   });
   if (result.error) {
     error.value = result.error.statusText ?? "Something went wrong";
