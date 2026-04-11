@@ -3,11 +3,6 @@ import { auth } from "../lib/auth";
 export default defineEventHandler(async (event) => {
   const path = event.path;
 
-  // Skip middleware for internal Nuxt Content queries
-  if (path.startsWith("/__nuxt_content") || path.startsWith("/api/_content")) {
-    return;
-  }
-
   if (path.startsWith("/dashboard")) {
     const session = await auth.api.getSession(({
       headers: event.headers,
