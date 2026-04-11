@@ -24,7 +24,7 @@ const fields: AuthFormField[] = [{
   type: "password",
   label: "Password",
   color: "neutral",
-  placeholder: "password123",
+  placeholder: "********",
   required: true,
 }];
 

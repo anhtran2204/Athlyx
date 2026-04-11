@@ -1,4 +1,5 @@
 /* eslint-disable unused-imports/no-unused-vars */
+import { dash } from "@better-auth/infra";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { createAuthMiddleware } from "better-auth/api";
@@ -24,6 +25,11 @@ export const auth = betterAuth({
     },
   },
   baseURL: env.BETTER_AUTH_URL,
+  trustedOrigins: [
+    "www.athlyxfit.com",
+    "athlyxfit.com",
+    "athlyx-pro.vercel.app",
+  ],
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
@@ -67,4 +73,7 @@ export const auth = betterAuth({
       }
     }),
   },
+  plugins: [
+    dash(),
+  ],
 });
