@@ -16,7 +16,7 @@ useHead({
 </script>
 
 <template>
-  <NuxtApp>
+  <NuxtApp :toaster="{ position: 'top-right' }">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

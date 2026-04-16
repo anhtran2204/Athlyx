@@ -31,15 +31,9 @@ const fields: AuthFormField[] = [{
 const providers = [{
   label: "Google",
   icon: "i-simple-icons-google",
-  onClick: () => {
-    toast.add({ title: "Google", description: "Login with Google" });
-  },
 }, {
   label: "GitHub",
   icon: "i-simple-icons-github",
-  onClick: () => {
-    toast.add({ title: "GitHub", description: "Login with GitHub" });
-  },
 }];
 
 const schema = z.object({
@@ -52,34 +46,47 @@ type SignUpSchema = z.output<typeof schema>;
 
 const error = ref<string | undefined>("");
 const loading = ref(false);
+const pendingEmail = useState<string>("pending-verification-email");
 
 async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
   loading.value = true;
   error.value = "";
-  // const { csrf } = useCsrf();
-  // const headers = new Headers();
-  // headers.append("csrf-token", csrf);
-  const result = await authClient.signUp.email({
+  const { csrf } = useCsrf();
+  const headers = new Headers();
+  headers.append("csrf-token", csrf);
+  await authClient.signUp.email({
     name: values.data.name,
     email: values.data.email,
     password: values.data.password,
-    callbackURL: "/login",
-    // fetchOptions: {
-    //   headers,
-    // },
-  }, {
-    onSuccess: () => {
-      navigateTo("/login");
+    callbackURL: "/email-verified",
+    fetchOptions: {
+      headers,
+      onSuccess() {
+        pendingEmail.value = values.data.email;
+        toast.add({
+          title: "Success!",
+          description: "If an account exists with this email, you will receive a verification link shortly. Please check your inbox.",
+          icon: "lucide:circle-check-big",
+          color: "success",
+          progress: false,
+        });
+        navigateTo("/verify-email");
+      },
+      onError() {
+        toast.add({
+          id: "signup-error",
+          title: "Sign up failed",
+          description: "Something went wrong on our end. Please try again in a moment.",
+          icon: "lucide:circle-x",
+          color: "error",
+          progress: false,
+        });
+      },
     },
   });
-  if (result.error) {
-    error.value = result.error.statusText ?? "Something went wrong";
-  }
-  else {
-    toast.add({ title: "Success", description: "Account created.", color: "info" });
-    // console.log("Submitted ", values);
-  }
   loading.value = false;
+  // Invalidate cached session so middleware's useSession(useFetch) refetches
+  await clearNuxtData();
 }
 </script>
 

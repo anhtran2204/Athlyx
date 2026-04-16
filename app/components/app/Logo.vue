@@ -14,6 +14,7 @@ const props = defineProps<{
       alt="Logo"
       :width="140"
       :height="38"
+      class="focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-info"
     />
   </NuxtLink>
 </template>

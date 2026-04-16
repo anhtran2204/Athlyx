@@ -20,6 +20,11 @@ jobs:
       AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_CLIENT_ID }}
       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_WELCOME_TEMPLATE: ${{ secrets.RESEND_WELCOME_TEMPLATE }}
+      RESEND_VERIFICATION_TEMPLATE: ${{ secrets.RESEND_VERIFICATION_TEMPLATE }}
+      RESEND_RESET_TEMPLATE: ${{ secrets.RESEND_RESET_TEMPLATE }}
+      RESEND_EMAIL_FROM: ${{ secrets.RESEND_EMAIL_FROM }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js

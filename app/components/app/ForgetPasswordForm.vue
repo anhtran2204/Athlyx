@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import type { AuthFormField, FormSubmitEvent } from "@nuxt/ui";
+import { useCountdown } from "@vueuse/core";
 import { z } from "zod";
 import { authClient } from "~~/server/lib/auth-client";
 
-// const authStore = useAuthStore();
+const toast = useToast();
+const clicked = ref(false);
 
-const error = ref("");
+const countdownSeconds = shallowRef(30);
+const { remaining, start } = useCountdown(countdownSeconds);
+
+onMounted(() => {
+  clicked.value = false;
+});
+
 const fields: AuthFormField[] = [{
   name: "email",
   type: "email",
@@ -21,19 +29,51 @@ const schema = z.object({
 
 type ResetPassword = z.output<typeof schema>;
 
-async function onSubmit(values: FormSubmitEvent<ResetPassword>) {
-  const token = new URLSearchParams(window.location.search).get("token");
-  if (!token) {
-    // Handle the error
-  }
+async function resendPasswordReset(values: FormSubmitEvent<ResetPassword>) {
+  start(countdownSeconds);
+  clicked.value = true;
+  const { csrf } = useCsrf();
+  const headers = new Headers();
+  headers.append("csrf-token", csrf);
   await authClient.requestPasswordReset({
     email: values.data.email,
+    redirectTo: "/reset-password",
+    fetchOptions: {
+      headers,
+      onError(ctx) {
+        if (ctx.error.code === "USER_NOT_FOUND" || ctx.error.code === "USER_EMAIL_NOT_FOUND" || ctx.error.code === "ACCOUNT_NOT_FOUND") {
+          toast.add({
+            id: "reset-password-not-found",
+            title: "Account not found",
+            description: "No account exists for this email address. Double-check or sign up.",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+        else if (ctx.error.code === "INVALID_EMAIL") {
+          toast.add({
+            id: "reset-password-invalid",
+            title: "Invalid email",
+            description: "The credential entered doesn't match our records. Please try again with a different one.",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+        else {
+          toast.add({
+            id: "reset-password-error",
+            title: "Sign up failed",
+            description: "Something went wrong on our end. Please try again in a moment.",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+      },
+    },
   });
-  // await authStore.resetPassword({
-  //   newPassword:
-  //   token,
-  // });
-  navigateTo("/");
 }
 </script>
 
@@ -51,23 +91,17 @@ async function onSubmit(values: FormSubmitEvent<ResetPassword>) {
         title="Reset your password"
         icon="i-lucide-lock"
         :submit="{
-          label: 'Reset password',
+          label: (remaining > 0 && clicked) ? `Request reset link (${remaining})` : 'Request reset link',
           color: 'info',
+          variant: 'outline',
+          size: 'lg',
+          disabled: remaining > 0 && clicked,
+          class: 'flex justify-center items-center',
         }"
-        @submit.prevent="onSubmit"
+        @submit.prevent="resendPasswordReset"
       >
         <template #description>
           Enter your email address and we'll send you a link to reset your password
-        </template>
-        <template
-          #validation
-        >
-          <LazyNuxtAlert
-            v-if="error"
-            color="error"
-            icon="i-lucide-info"
-            title="Error signing in"
-          />
         </template>
       </NuxtAuthForm>
     </NuxtPageCard>

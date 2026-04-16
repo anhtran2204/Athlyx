@@ -17,9 +17,10 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-vitalizer",
     "@pinia/nuxt",
-    // "nuxt-csurf",
+    // "nuxt-security",
     "@vercel/analytics",
     "@vercel/speed-insights",
+    "nuxt-security",
   ],
   // css: ["~~/app/assets/css/main.css"],
   app: {
@@ -33,6 +34,9 @@ export default defineNuxtConfig({
   },
   pages: {
     pattern: ["**/*.vue", "!**/components/**"],
+  },
+  routeRules: {
+    "/home:": { redirect: "/" },
   },
   components: [
     {
@@ -79,6 +83,15 @@ export default defineNuxtConfig({
     },
     routeRules: {
       "/__nuxt_content/**": { csurf: false } as any,
+    },
+  },
+  security: {
+    csrf: true,
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": ["'self'", "data:", "https://avatars.githubusercontent.com", "https://github.com"],
+        "script-src-attr": false,
+      },
     },
   },
   content: {
