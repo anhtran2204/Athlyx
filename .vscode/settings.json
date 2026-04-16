@@ -3,6 +3,8 @@
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
+  "eslint.runtime": "/home/jasontran2048/.nvm/versions/node/v24.12.0/bin/node",
+
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",

@@ -1,14 +1,14 @@
-/* eslint-disable unused-imports/no-unused-vars */
-import { dash } from "@better-auth/infra";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { createAuthMiddleware } from "better-auth/api";
 // If your Prisma file is located elsewhere, you can change the path
 import { prisma } from "~~/server/utils/prisma";
 
+import { resend } from "./email/resend";
 import env from "./env";
 
 const prismaClient = prisma;
+
 export const auth = betterAuth({
   appName: "Athlyx",
   database: prismaAdapter(prismaClient, {
@@ -40,23 +40,59 @@ export const auth = betterAuth({
   ],
   emailAndPassword: {
     enabled: true,
+    requireEmailVerification: true,
+    onExistingUserSignUp: async ({ user }) => {
+      try {
+        await resend.emails.send({
+          from: env.RESEND_EMAIL_FROM,
+          to: [user.email],
+          template: {
+            id: env.RESEND_EXISTING_TEMPLATE,
+            variables: {
+              USER_NAME: user.name,
+              USER_EMAIL: user.email,
+              RESET_PASSWORD: `${env.BETTER_AUTH_URL}/forget-password`,
+            },
+          },
+        });
+      }
+      catch (error) {
+        console.log("DEBUG: Resend Failed:", error);
+      }
+    },
     autoSignIn: false,
     sendResetPassword: async ({ user, url }) => {
-      // Send reset password email
-      // console.log(`Click the link to reset your password: ${url}`);
+      await resend.emails.send({
+        from: env.RESEND_EMAIL_FROM,
+        to: [user.email],
+        template: {
+          id: env.RESEND_RESET_TEMPLATE,
+          variables: {
+            USER_NAME: user.name || "user",
+            RESET_PASSWORD: url || "/login",
+          },
+        },
+      });
     },
-    resetPasswordTokenExpiresIn: 3600,
-    onPasswordReset: async ({ user }) => {
-      // your logic here
-      // console.log(`Password for user ${user.email} has been reset.`);
-    },
+    revokeSessionsOnPasswordReset: true,
+    resetPasswordTokenExpiresIn: 86400,
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      // console.log(`Click the link to verify your email: ${url}`);
+      await resend.emails.send({
+        from: env.RESEND_EMAIL_FROM,
+        to: [user.email],
+        template: {
+          id: env.RESEND_VERIFICATION_TEMPLATE,
+          variables: {
+            VERIFY_LINK: url,
+            type: "string",
+            fallbackValue: "user",
+          },
+        },
+      });
     },
-    sendOnSignUp: true,
-    expiresIn: 3600,
+    expiresIn: 86400,
   },
   socialProviders: {
     github: {
@@ -81,9 +117,4 @@ export const auth = betterAuth({
       }
     }),
   },
-  plugins: [
-    dash({
-      apiKey: env.BETTER_AUTH_API_KEY,
-    }),
-  ],
 });

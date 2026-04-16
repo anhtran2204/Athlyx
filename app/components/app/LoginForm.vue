@@ -32,14 +32,12 @@ const providers = [{
   icon: "i-simple-icons-google",
   onClick: () => {
     authStore.googleSignIn();
-    toast.add({ title: "Google", description: "Login with Google", color: "info" });
   },
 }, {
   label: "GitHub",
   icon: "i-simple-icons-github",
   onClick: () => {
     authStore.githubSignIn();
-    toast.add({ title: "GitHub", description: "Login with GitHub", color: "info" });
   },
 }];
 
@@ -57,26 +55,63 @@ const loading = ref(false);
 async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
   loading.value = true;
   error.value = "";
-  // const { csrf } = useCsrf();
-  // const headers = new Headers();
-  // headers.append("csrf-token", csrf);
-  const result = await authClient.signIn.email({
+  const { csrf } = useCsrf();
+  const headers = new Headers();
+  headers.append("csrf-token", csrf);
+  await authClient.signIn.email({
     email: values.data.email,
     password: values.data.password,
     rememberMe: values.data.remember || true,
     callbackURL: "/dashboard",
-    // fetchOptions: {
-    //   headers,
-    // },
+    fetchOptions: {
+      headers,
+      onSuccess() {
+        toast.add({
+          id: "login-success",
+          title: "Welcome back!",
+          description: "You've been successfully signed in.",
+          icon: "lucide:circle-check-big",
+          color: "success",
+          progress: false,
+        });
+      },
+      onError(ctx) {
+        if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
+          toast.add({
+            id: "login-valid",
+            title: "Invalid email or password",
+            description: "The credentials entered don't match our records. Please try again or reset your password.",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+        else if (ctx.error.code === "EMAIL_NOT_VERIFIED") {
+          toast.add({
+            id: "signup-not-verified",
+            title: ctx.error.message,
+            description: "Please verify your email first",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+        else {
+          toast.add({
+            id: "login-error",
+            title: "Sign up failed",
+            description: "Something went wrong on our end. Please try again in a moment.",
+            icon: "lucide:circle-x",
+            color: "error",
+            progress: false,
+          });
+        }
+      },
+    },
   });
-  if (result.error) {
-    error.value = result.error.statusText ?? "Something went wrong";
-  }
-  else {
-    toast.add({ title: "Success", description: "User logged in.", color: "info" });
-    // console.log("Submitted ", values);
-  }
   loading.value = false;
+  // Invalidate cached session so middleware's useSession(useFetch) refetches
+  await clearNuxtData();
 }
 </script>
 

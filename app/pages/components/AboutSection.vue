@@ -1,11 +1,22 @@
 <script setup lang="ts">
-const { data: page, status: pageStatus } = await useAsyncData("about", () => {
+const { data: page, status: pageStatus, refresh: pageRefresh } = await useAsyncData("about", () => {
   return queryCollection("about").path("/about").first();
+});
+
+onMounted(() => {
+  pageRefresh();
 });
 
 useSeoMeta({
   title: page.value?.seo?.title || page.value?.title || "About",
   description: page.value?.seo?.description || page.value?.description,
+});
+
+effect(() => {
+  console.log(pageStatus.value);
+  if (pageStatus.value !== "pending") {
+    pageRefresh();
+  }
 });
 </script>
 
@@ -48,10 +59,7 @@ useSeoMeta({
       <LazyContentRenderer v-if="page" :value="page" />
     </NuxtPageSection>
   </div>
-  <span v-else-if="pageStatus === 'pending'" class="flex py-8 sm:py-16 justify-center items-center">
+  <span v-else class="flex py-8 sm:py-16 justify-center items-center">
     <div class="loading loading-md" />
   </span>
-  <div v-else class="flex py-8 sm:py-16 justify-center items-center">
-    Content not found
-  </div>
 </template>
