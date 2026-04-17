@@ -14,7 +14,7 @@ useSeoMeta({
 
 effect(() => {
   console.log(pageStatus.value);
-  if (pageStatus.value !== "pending") {
+  if (pageStatus.value === "pending") {
     pageRefresh();
   }
 });

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { authClient } from "~~/server/lib/auth-client";
 
 const loading = ref(false);
+const toast = useToast();
 const expiringToken = ref(false);
 
 onBeforeMount(() => {
@@ -42,16 +43,30 @@ type ResetPasswordSchema = z.output<typeof schema>;
 
 async function onSubmit(values: FormSubmitEvent<ResetPasswordSchema>) {
   loading.value = true;
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
   await authClient.resetPassword({
     newPassword: values.data.password,
     fetchOptions: {
-      headers,
+      onSuccess() {
+        toast.add({
+          id: "reset-success",
+          title: "Password updated",
+          description: "Your password has been changed. You can now sign in with your new password.",
+          icon: "lucide:circle-check-big",
+          color: "success",
+        });
+        navigateTo("/login");
+      },
+      onError() {
+        toast.add({
+          id: "reset-error",
+          title: "Reset failed",
+          description: "Something went wrong on our end. Please try again in a moment.",
+          icon: "lucide:circle-x",
+          color: "error",
+        });
+      },
     },
   });
-  navigateTo("/login");
 }
 </script>
 
@@ -64,7 +79,7 @@ async function onSubmit(values: FormSubmitEvent<ResetPasswordSchema>) {
         root: 'bg-transparent ring-0',
       }"
     >
-      <NuxtAuthForm
+      <LazyNuxtAuthForm
         :schema="schema"
         :fields="fields"
         title="Change your password"
@@ -89,8 +104,8 @@ async function onSubmit(values: FormSubmitEvent<ResetPasswordSchema>) {
             class="bg-warning/25 mt-8"
           />
         </template>
-      </NuxtAuthForm>
+      </LazyNuxtAuthForm>
     </NuxtPageCard>
-    <ExpiredLinkCard v-else />
+    <LazyExpiredLinkCard v-else />
   </div>
 </template>

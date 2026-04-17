@@ -13,14 +13,10 @@ export const useAuthStore = defineStore("useAuthStore", () => {
   const loading = computed(() => session.value?.isPending);
 
   async function githubSignIn() {
-    const { csrf } = useCsrf();
-    const headers = new Headers();
-    headers.append("csrf-token", csrf);
     await authClient.signIn.social({
       provider: "github",
       callbackURL: "/dashboard",
       fetchOptions: {
-        headers,
         onSuccess() {
           toast.add({
             title: "Signed in with GitHub",
@@ -29,54 +25,65 @@ export const useAuthStore = defineStore("useAuthStore", () => {
             color: "success",
           });
         },
+        onError() {
+          toast.add({
+            id: "oauth-error",
+            title: "Reset failed",
+            description: "Something went wrong on our end. Please try again in a moment.",
+            icon: "lucide:circle-x",
+            color: "error",
+          });
+        },
       },
     });
   };
 
-  async function githubSignOut() {
-    const { csrf } = useCsrf();
-    const headers = new Headers();
-    headers.append("csrf-token", csrf);
-    await authClient.signOut({
-      fetchOptions: {
-        headers,
-      },
-    });
-    await authClient.revokeSession({
-      token: session.value?.data?.session.token || "",
-      fetchOptions: {
-        headers,
-      },
-    });
-    navigateTo("/");
-  }
-
   async function googleSignIn() {
-    const { csrf } = useCsrf();
-    const headers = new Headers();
-    headers.append("csrf-token", csrf);
     await authClient.signIn.social({
       provider: "google",
       callbackURL: "/dashboard",
       fetchOptions: {
-        headers,
+        onSuccess() {
+          toast.add({
+            title: "Signed in with Google",
+            description: "You've been signed in successfully via Google.",
+            icon: "tabler:brand-github",
+            color: "success",
+          });
+        },
+        onError() {
+          toast.add({
+            id: "oauth-error",
+            title: "Reset failed",
+            description: "Something went wrong on our end. Please try again in a moment.",
+            icon: "lucide:circle-x",
+            color: "error",
+          });
+        },
       },
     });
   };
 
-  async function googleSignOut() {
-    const { csrf } = useCsrf();
-    const headers = new Headers();
-    headers.append("csrf-token", csrf);
+  async function signOut() {
     await authClient.signOut({
       fetchOptions: {
-        headers,
-      },
-    });
-    await authClient.revokeSession({
-      token: session.value?.data?.session.token || "",
-      fetchOptions: {
-        headers,
+        onSuccess() {
+          toast.add({
+            title: "Signed out",
+            description: "You've been signed out successfully.",
+            icon: "tabler:brand-github",
+            color: "success",
+          });
+        },
+        onError() {
+          toast.add({
+            id: "signout-error",
+            title: "Reset failed",
+            description: "Something went wrong on our end. Please try again in a moment.",
+            icon: "lucide:circle-x",
+            color: "error",
+          });
+        },
       },
     });
     navigateTo("/");
@@ -87,8 +94,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
     user,
     loading,
     githubSignIn,
-    githubSignOut,
     googleSignIn,
-    googleSignOut,
+    signOut,
   };
 });

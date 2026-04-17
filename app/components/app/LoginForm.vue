@@ -4,6 +4,7 @@ import z from "zod";
 import { authClient } from "~~/server/lib/auth-client";
 
 const authStore = useAuthStore();
+
 const toast = useToast();
 
 const fields: AuthFormField[] = [{
@@ -55,16 +56,13 @@ const loading = ref(false);
 async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
   loading.value = true;
   error.value = "";
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
+
   await authClient.signIn.email({
     email: values.data.email,
     password: values.data.password,
     rememberMe: values.data.remember || true,
     callbackURL: "/dashboard",
     fetchOptions: {
-      headers,
       onSuccess() {
         toast.add({
           id: "login-success",
@@ -72,7 +70,6 @@ async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
           description: "You've been successfully signed in.",
           icon: "lucide:circle-check-big",
           color: "success",
-          progress: false,
         });
       },
       onError(ctx) {
@@ -83,7 +80,6 @@ async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
             description: "The credentials entered don't match our records. Please try again or reset your password.",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
         else if (ctx.error.code === "EMAIL_NOT_VERIFIED") {
@@ -93,7 +89,6 @@ async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
             description: "Please verify your email first",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
         else {
@@ -103,7 +98,6 @@ async function onSubmit(values: FormSubmitEvent<LoginSchema>) {
             description: "Something went wrong on our end. Please try again in a moment.",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
       },

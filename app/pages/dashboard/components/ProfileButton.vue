@@ -151,7 +151,7 @@ const items = ref<DropdownMenuItem[][]>([
     {
       label: "Support",
       icon: "i-lucide-life-buoy",
-      to: "/docs/components/dropdown-menu",
+      to: "/about",
     },
     {
       label: "API",
@@ -165,7 +165,7 @@ const items = ref<DropdownMenuItem[][]>([
       icon: "i-lucide-log-out",
       color: "error",
       kbds: ["shift", "meta", "q"],
-      onSelect: authStore.githubSignOut,
+      onSelect: authStore.signOut,
       class: "hover:cursor-pointer",
     },
   ],
