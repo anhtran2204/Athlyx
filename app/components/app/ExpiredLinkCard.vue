@@ -1,7 +1,7 @@
 <template>
   <NuxtPageCard
     title="Link has expired"
-    description="This verification link has expired. Request a new one to continue."
+    description="This link has expired. Request a new one to continue."
     icon="lucide:circle-x"
     class="w-full max-w-md"
     :ui="{

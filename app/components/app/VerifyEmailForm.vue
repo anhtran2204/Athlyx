@@ -2,6 +2,8 @@
 import { useCountdown } from "@vueuse/core";
 import { authClient } from "~~/server/lib/auth-client";
 
+const toast = useToast();
+
 const countdownSeconds = shallowRef(30);
 const { remaining, start } = useCountdown(countdownSeconds);
 const resendEmail = useState<string>("pending-verification-email");
@@ -15,14 +17,21 @@ async function resendEmailVerification() {
     navigateTo("/sign-up");
   }
   start(countdownSeconds);
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
   await authClient.sendVerificationEmail({
     email: resendEmail.value,
     callbackURL: "/email-verified",
     fetchOptions: {
-      headers,
+      onError(ctx) {
+        if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
+          toast.add({
+            id: "login-valid",
+            title: "Invalid email or password",
+            description: "The credentials entered don't match our records. Please try again or reset your password.",
+            icon: "lucide:circle-x",
+            color: "error",
+          });
+        }
+      },
     },
   });
 }

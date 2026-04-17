@@ -17,7 +17,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-vitalizer",
     "@pinia/nuxt",
-    // "nuxt-security",
     "@vercel/analytics",
     "@vercel/speed-insights",
     "nuxt-security",
@@ -36,7 +35,7 @@ export default defineNuxtConfig({
     pattern: ["**/*.vue", "!**/components/**"],
   },
   routeRules: {
-    "/home:": { redirect: "/" },
+    "/home:": { redirect: { to: "/", statusCode: 301 } },
   },
   components: [
     {
@@ -86,10 +85,23 @@ export default defineNuxtConfig({
     },
   },
   security: {
-    csrf: true,
+    csrf: false,
     headers: {
       contentSecurityPolicy: {
-        "img-src": ["'self'", "data:", "https://avatars.githubusercontent.com", "https://github.com"],
+        "img-src": [
+          "'self'",
+          "data:",
+          "https://avatars.githubusercontent.com",
+          "https://github.com",
+        ],
+        "script-src": [
+          "'self'",
+          "https:",
+          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'wasm-unsafe-eval'",
+          "'nonce-{{nonce}}'",
+        ],
         "script-src-attr": false,
       },
     },

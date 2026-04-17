@@ -51,16 +51,11 @@ const pendingEmail = useState<string>("pending-verification-email");
 async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
   loading.value = true;
   error.value = "";
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
   await authClient.signUp.email({
     name: values.data.name,
     email: values.data.email,
     password: values.data.password,
-    callbackURL: "/email-verified",
     fetchOptions: {
-      headers,
       onSuccess() {
         pendingEmail.value = values.data.email;
         toast.add({
@@ -68,7 +63,6 @@ async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
           description: "If an account exists with this email, you will receive a verification link shortly. Please check your inbox.",
           icon: "lucide:circle-check-big",
           color: "success",
-          progress: false,
         });
         navigateTo("/verify-email");
       },
@@ -79,14 +73,11 @@ async function onSubmit(values: FormSubmitEvent<SignUpSchema>) {
           description: "Something went wrong on our end. Please try again in a moment.",
           icon: "lucide:circle-x",
           color: "error",
-          progress: false,
         });
       },
     },
   });
   loading.value = false;
-  // Invalidate cached session so middleware's useSession(useFetch) refetches
-  await clearNuxtData();
 }
 </script>
 

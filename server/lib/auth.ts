@@ -92,6 +92,7 @@ export const auth = betterAuth({
         },
       });
     },
+    sendOnSignUp: true,
     expiresIn: 86400,
   },
   socialProviders: {

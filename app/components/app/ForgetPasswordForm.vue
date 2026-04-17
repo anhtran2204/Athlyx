@@ -32,14 +32,10 @@ type ResetPassword = z.output<typeof schema>;
 async function resendPasswordReset(values: FormSubmitEvent<ResetPassword>) {
   start(countdownSeconds);
   clicked.value = true;
-  const { csrf } = useCsrf();
-  const headers = new Headers();
-  headers.append("csrf-token", csrf);
   await authClient.requestPasswordReset({
     email: values.data.email,
     redirectTo: "/reset-password",
     fetchOptions: {
-      headers,
       onError(ctx) {
         if (ctx.error.code === "USER_NOT_FOUND" || ctx.error.code === "USER_EMAIL_NOT_FOUND" || ctx.error.code === "ACCOUNT_NOT_FOUND") {
           toast.add({
@@ -48,7 +44,6 @@ async function resendPasswordReset(values: FormSubmitEvent<ResetPassword>) {
             description: "No account exists for this email address. Double-check or sign up.",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
         else if (ctx.error.code === "INVALID_EMAIL") {
@@ -58,7 +53,6 @@ async function resendPasswordReset(values: FormSubmitEvent<ResetPassword>) {
             description: "The credential entered doesn't match our records. Please try again with a different one.",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
         else {
@@ -68,7 +62,6 @@ async function resendPasswordReset(values: FormSubmitEvent<ResetPassword>) {
             description: "Something went wrong on our end. Please try again in a moment.",
             icon: "lucide:circle-x",
             color: "error",
-            progress: false,
           });
         }
       },

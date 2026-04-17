@@ -7,6 +7,14 @@ definePageMeta({
 });
 
 const layout = "user-auth";
+const expiringToken = ref(false);
+
+onBeforeMount(async () => {
+  const token = new URLSearchParams(window.location.search).get("token") || new URLSearchParams(window.location.search).get("error");
+  if (token === "TOKEN_EXPIRED" || !token) {
+    expiringToken.value = true;
+  }
+});
 </script>
 
 <template>
@@ -22,7 +30,8 @@ const layout = "user-auth";
               @click="router.back"
             />
           </div> -->
-        <LazyVerifiedEmailCard />
+        <LazyVerifiedEmailCard v-if="!expiringToken" />
+        <LazyExpiredLinkCard v-else />
       </div>
     </ClientOnly>
   </NuxtLayout>
