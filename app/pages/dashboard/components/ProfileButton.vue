@@ -30,6 +30,9 @@ const items = ref<DropdownMenuItem[][]>([
       icon: "i-lucide-settings",
       to: "/dashboard/settings",
       kbds: [","],
+      onSelect: () => {
+        return navigateTo("/dashboard/settings");
+      },
     },
     {
       label: "Keyboard shortcuts",
@@ -138,7 +141,7 @@ const items = ref<DropdownMenuItem[][]>([
     {
       label: "New team",
       icon: "i-lucide-plus",
-      kbds: ["meta", "n"],
+      kbds: ["ctrl", "n"],
     },
   ],
   [
@@ -164,12 +167,14 @@ const items = ref<DropdownMenuItem[][]>([
       label: "Logout",
       icon: "i-lucide-log-out",
       color: "error",
-      kbds: ["shift", "meta", "q"],
+      kbds: ["shift", "ctrl", "q"],
       onSelect: authStore.signOut,
       class: "hover:cursor-pointer",
     },
   ],
 ]);
+console.log(extractShortcuts(items.value));
+defineShortcuts(extractShortcuts(items.value));
 </script>
 
 <template>

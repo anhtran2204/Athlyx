@@ -12,6 +12,9 @@ export default withNuxt(
     typescript: true,
     formatters: {
       prisma: true,
+      css: true,
+      html: true,
+      markdown: true,
     },
     stylistic: {
       indent: 2,

@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-  <HeaderSection id="header" />
+  <HeaderSection />
 </template>

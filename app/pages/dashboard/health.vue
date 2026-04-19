@@ -74,6 +74,10 @@ async function openModal() {
             class: 'text-muted hover:text-highlighted hover:cursor-pointer',
             onClick: openModal,
           }]"
+          :ui="{
+            header: '',
+            actions: '',
+          }"
         />
       </div>
     </template>

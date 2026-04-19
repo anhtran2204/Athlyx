@@ -37,7 +37,7 @@ const range = shallowRef<Range>({
       </NuxtDashboardToolbar>
     </template>
     <template #body>
-      <NuxtPage />
+      <DashboardCard />
     </template>
   </NuxtDashboardPanel>
 </template>
