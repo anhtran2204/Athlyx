@@ -3,12 +3,54 @@
 
 @plugin "daisyui";
 
-.page-enter-active {
+/* .page-enter-active {
   transition: opacity 2s ease-in-out;
 }
 
 .page-enter-from {
   opacity: 0;
+  transform: translateY(18px);
+} */
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-3rem);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
 }
 
 .dark {
