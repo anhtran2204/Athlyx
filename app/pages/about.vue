@@ -29,11 +29,6 @@ onMounted(() => {
 </template>
 
 <style lang="css" scoped>
-.about {
-  opacity: 0;
-  animation: fadeUp 2s ease 0.3s forwards;
-}
-
 .reveal.up {
   opacity: 0;
   transform: translateY(22px);
