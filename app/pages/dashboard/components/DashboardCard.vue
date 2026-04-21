@@ -82,6 +82,7 @@ const cards2 = [
     icon: "i-lucide-smile",
     to: "/docs/getting-started/integrations/icons",
     variant: "soft" as const,
+    class: "lg:row-span-2",
   },
 ];
 </script>

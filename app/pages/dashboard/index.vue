@@ -33,6 +33,7 @@ const range = shallowRef<Range>({
       <NuxtDashboardToolbar>
         <template #left>
           <DatePicker v-model="range" class="-ms-1" />
+          <PeriodSelect />
         </template>
       </NuxtDashboardToolbar>
     </template>
