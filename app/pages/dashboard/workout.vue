@@ -9,6 +9,19 @@ const items: NavigationMenuItem[][] = [
       exact: true,
       to: "/dashboard/workout",
     },
+    {
+      label: "Active Workout",
+      icon: "lucide:activity",
+      exact: true,
+    },
+    {
+      label: "Routines",
+      icon: "lucide:clipboard-list",
+    },
+    {
+      label: "Exercises",
+      icon: "lucide:dumbbell",
+    },
   ],
 ];
 </script>
@@ -31,7 +44,11 @@ const items: NavigationMenuItem[][] = [
           <ProfileButton />
         </template>
       </NuxtDashboardNavbar>
-      <NuxtDashboardToolbar>
+      <NuxtDashboardToolbar
+        :ui="{
+          root: 'px-4',
+        }"
+      >
         <NuxtNavigationMenu
           :items="items"
           highlight

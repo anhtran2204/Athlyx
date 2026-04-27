@@ -1,22 +1,10 @@
 <script setup lang="ts">
 import { LazyFileUploadModal } from "#components";
-import type { NavigationMenuItem } from "@nuxt/ui";
 
 const data = ref(false);
 
 const overlay = useOverlay();
 const modal = overlay.create(LazyFileUploadModal);
-
-const items: NavigationMenuItem[][] = [
-  [
-    {
-      label: "Overview",
-      icon: "tabler:chart-arcs-3",
-      exact: true,
-      to: "/dashboard/health",
-    },
-  ],
-];
 
 async function openModal() {
   await modal.open();
@@ -42,20 +30,16 @@ async function openModal() {
         </template>
       </NuxtDashboardNavbar>
       <NuxtDashboardToolbar>
-        <NuxtNavigationMenu
-          :items="items"
-          highlight
-          highlight-color="info"
-          class="flex-1 -ms-1"
-        />
-        <NuxtButton
-          color="neutral"
-          variant="ghost"
-          icon="tabler:upload"
-          label="Upload"
-          class="text-muted hover:text-highlighted hover:cursor-pointer"
-          @click="openModal"
-        />
+        <template #right>
+          <NuxtButton
+            color="neutral"
+            variant="ghost"
+            icon="tabler:upload"
+            label="Upload"
+            class="text-muted hover:text-highlighted hover:cursor-pointer"
+            @click="openModal"
+          />
+        </template>
       </NuxtDashboardToolbar>
     </template>
     <template #body>

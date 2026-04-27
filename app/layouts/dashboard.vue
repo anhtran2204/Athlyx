@@ -2,6 +2,8 @@
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const route = useRoute();
+const authStore = useAuthStore();
+await authStore.init();
 
 const items = [[{
   label: "Home",

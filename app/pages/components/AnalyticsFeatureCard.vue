@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-fit dark:bg-analytics-card light:bg-analytics-card rounded-3xl grid grid-cols-2 gap-4 p-12">
+  <div class="w-full dark:bg-analytics-card light:bg-analytics-card rounded-3xl grid grid-cols-2 gap-4 p-12">
     <div class="col-span-2 rounded-xl shadow-lg/20 dark:bg-default light:bg-white flex flex-col space-y-2 p-6">
       <div class="flex-1 flex justify-between items-center">
         <p class="dark:text-gray-300 light:text-slate-600">

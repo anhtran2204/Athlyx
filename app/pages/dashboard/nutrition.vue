@@ -1,16 +1,4 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
-
-const items: NavigationMenuItem[][] = [
-  [
-    {
-      label: "Overview",
-      icon: "tabler:chart-arcs-3",
-      exact: true,
-      to: "/dashboard/nutrition",
-    },
-  ],
-];
 </script>
 
 <template>
@@ -31,14 +19,7 @@ const items: NavigationMenuItem[][] = [
           <ProfileButton />
         </template>
       </NuxtDashboardNavbar>
-      <NuxtDashboardToolbar>
-        <NuxtNavigationMenu
-          :items="items"
-          highlight
-          highlight-color="info"
-          class="flex-1 -ms-1"
-        />
-      </NuxtDashboardToolbar>
+      <NuxtDashboardToolbar />
     </template>
     <template #body>
       <NuxtPage />

@@ -173,7 +173,6 @@ const items = ref<DropdownMenuItem[][]>([
     },
   ],
 ]);
-console.log(extractShortcuts(items.value));
 defineShortcuts(extractShortcuts(items.value));
 </script>
 
