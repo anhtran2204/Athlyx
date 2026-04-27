@@ -3,14 +3,15 @@
 
 @plugin "daisyui";
 
-/* .page-enter-active {
-  transition: opacity 2s ease-in-out;
-}
+:root {
+  --vis-donut-background-color: transparent !important;
 
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(18px);
-} */
+  --vis-tooltip-background-color: var(--ui-bg) !important;
+  --vis-tooltip-border-color: var(--ui-border) !important;
+  --vis-tooltip-title-color: var(--ui-text) !important;
+  --vis-tooltip-text-color: var(--ui-text) !important;
+  --vis-tooltip-divider: var(--ui-border) !important;
+}
 
 @keyframes fadeUp {
   0% {
@@ -94,6 +95,10 @@ body {
     @apply bg-linear-to-br from-cyan-800/65 to-blue-800/65 border-2 border-cyan-400;
   }
 
+  .dark\:bg-workout-card.dashboard {
+    @apply bg-linear-to-br from-cyan-900/20 to-blue-800/20 border-1 border-cyan-800;
+  }
+
   .dark\:bg-nutrition-card {
     @apply bg-linear-to-br from-purple-800/65 to-blue-800/65 border-2 border-purple-400;
   }
@@ -142,6 +147,10 @@ body {
 
   .light\:bg-workout-card {
     @apply bg-linear-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200;
+  }
+
+  .light\:bg-workout-card.dashboard {
+    @apply bg-linear-to-br from-cyan-100 to-blue-100 border border-cyan-200;
   }
 
   .light\:bg-nutrition-card {

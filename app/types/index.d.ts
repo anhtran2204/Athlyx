@@ -5,7 +5,9 @@
 
 import type { CalendarDate } from "@internationalized/date";
 
+export type Period = "daily" | "weekly" | "monthly";
+
 export type Range = {
-  start: CalendarDate | undefined;
-  end: CalendarDate | undefined;
+  start: CalendarDate;
+  end: CalendarDate;
 };

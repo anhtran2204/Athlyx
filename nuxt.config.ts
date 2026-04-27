@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "@vercel/analytics",
     "@vercel/speed-insights",
     "nuxt-security",
+    "nuxt-charts",
   ],
   // css: ["~~/app/assets/css/main.css"],
   app: {

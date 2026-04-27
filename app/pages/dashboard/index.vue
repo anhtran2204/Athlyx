@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { getLocalTimeZone, today } from "@internationalized/date";
 
-import type { Range } from "~/types";
+import type { Period, Range } from "~/types";
 
 const range = shallowRef<Range>({
   start: today(getLocalTimeZone()).subtract({ days: 14 }),
   end: today(getLocalTimeZone()),
 });
+const period = ref<Period>("daily");
 </script>
 
 <template>
@@ -33,12 +34,14 @@ const range = shallowRef<Range>({
       <NuxtDashboardToolbar>
         <template #left>
           <DatePicker v-model="range" class="-ms-1" />
-          <PeriodSelect />
+          <PeriodSelect v-model="period" :range="range" />
         </template>
       </NuxtDashboardToolbar>
     </template>
     <template #body>
-      <DashboardCard />
+      <div class="grow min-w-full container">
+        <DashboardView />
+      </div>
     </template>
   </NuxtDashboardPanel>
 </template>
