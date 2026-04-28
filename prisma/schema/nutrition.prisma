@@ -1,0 +1,35 @@
+// model Food {
+//     id              String  @id @default(uuid(7))
+//     name            String
+//     description     String
+//     servingSize     Float
+//     servingUnit     String
+//     calories        Float
+//     protein         Float
+//     fats            Float
+//     carbs           Float
+// }
+
+// model Recipe {
+//     id              String  @id @default(uuid(7))
+//     name            String
+//     description     String
+//     cookTime        Float
+//     prepTime        Float
+//     calories        Float
+//     protein         Float
+//     fats            Float
+//     carbs           Float
+// }
+
+// model RecipeIngredient {
+
+// }
+
+// model MealLog {
+
+// }
+
+// model MealLogItem {
+
+// }
