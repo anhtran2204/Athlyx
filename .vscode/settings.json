@@ -12,7 +12,8 @@
   },
 
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": true
   },
 
   "files.associations": {
@@ -58,6 +59,7 @@
     "less",
     "scss",
     "pcss",
-    "postcss"
+    "postcss",
+    "prisma"
   ]
 }

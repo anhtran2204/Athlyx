@@ -1,0 +1,44 @@
+model Exercise {
+  id                   String                @id @default(uuid(7))
+  name                 String
+  description          String
+  equipment            String
+  category             String
+  difficulty           String
+  isCustom             Boolean               @default(false)
+  createdById          String?
+  exerciseMuscleGroups ExerciseMuscleGroup[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+    @@index([category])
+    @@index([equipment])
+    @@index([difficulty])
+    @@index([createdById])
+  @@map("exercise")
+}
+
+model MuscleGroup {
+  id                   String                @id @default(uuid(7))
+  name                 String                  @unique
+  displayName          String
+  bodyRegion           String
+  exerciseMuscleGroups ExerciseMuscleGroup[]
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  @@map("muscle_group")
+}
+
+model ExerciseMuscleGroup {
+  exerciseId    String
+  muscleGroupId String
+  exercise      Exercise    @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  muscleGroup   MuscleGroup @relation(fields: [muscleGroupId], references: [id], onDelete: Cascade)
+  role          String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@id([exerciseId, muscleGroupId])
+  @@map("exercise_muscle_group")
+}

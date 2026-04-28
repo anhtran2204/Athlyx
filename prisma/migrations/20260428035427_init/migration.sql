@@ -1,18 +1,41 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "exercise" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "equipment" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "difficulty" TEXT NOT NULL,
+    "isCustom" BOOLEAN NOT NULL DEFAULT false,
+    "createdById" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
-  - You are about to drop the `Post` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
+    CONSTRAINT "exercise_pkey" PRIMARY KEY ("id")
+);
 
-*/
--- DropForeignKey
-ALTER TABLE "Post" DROP CONSTRAINT "Post_authorId_fkey";
+-- CreateTable
+CREATE TABLE "muscle_group" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "displayName" TEXT NOT NULL,
+    "bodyRegion" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
--- DropTable
-DROP TABLE "Post";
+    CONSTRAINT "muscle_group_pkey" PRIMARY KEY ("id")
+);
 
--- DropTable
-DROP TABLE "User";
+-- CreateTable
+CREATE TABLE "exercise_muscle_group" (
+    "exerciseId" TEXT NOT NULL,
+    "muscleGroupId" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "exercise_muscle_group_pkey" PRIMARY KEY ("exerciseId","muscleGroupId")
+);
 
 -- CreateTable
 CREATE TABLE "user" (
@@ -73,19 +96,40 @@ CREATE TABLE "verification" (
 );
 
 -- CreateIndex
+CREATE INDEX "exercise_category_idx" ON "exercise"("category");
+
+-- CreateIndex
+CREATE INDEX "exercise_equipment_idx" ON "exercise"("equipment");
+
+-- CreateIndex
+CREATE INDEX "exercise_difficulty_idx" ON "exercise"("difficulty");
+
+-- CreateIndex
+CREATE INDEX "exercise_createdById_idx" ON "exercise"("createdById");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "muscle_group_name_key" ON "muscle_group"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
-CREATE INDEX "session_userId_idx" ON "session"("userId");
+CREATE UNIQUE INDEX "session_token_key" ON "session"("token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "session_token_key" ON "session"("token");
+CREATE INDEX "session_userId_idx" ON "session"("userId");
 
 -- CreateIndex
 CREATE INDEX "account_userId_idx" ON "account"("userId");
 
 -- CreateIndex
 CREATE INDEX "verification_identifier_idx" ON "verification"("identifier");
+
+-- AddForeignKey
+ALTER TABLE "exercise_muscle_group" ADD CONSTRAINT "exercise_muscle_group_exerciseId_fkey" FOREIGN KEY ("exerciseId") REFERENCES "exercise"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "exercise_muscle_group" ADD CONSTRAINT "exercise_muscle_group_muscleGroupId_fkey" FOREIGN KEY ("muscleGroupId") REFERENCES "muscle_group"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -11,6 +11,6 @@ export default defineConfig({
     seed: "tsx ./prisma/seed.ts",
   },
   datasource: {
-    url: env("NODE_ENV") === "development" ? env("DATABASE_URL") : env("DIRECT_URL"), // Direct database URL for migrations
+    url: env("DIRECT_URL"), // Direct database URL for migrations
   },
 });
