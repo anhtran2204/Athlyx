@@ -9,7 +9,7 @@
     "db:seed": "prisma db seed",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "concurrently \"npm run prepare\" \"npm run prisma:generate\"",
+    "postinstall": "concurrently \"prepare\" \"npm run prisma:generate\"",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "nuxi typecheck",
