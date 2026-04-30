@@ -8,6 +8,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  mealLogs      MealLog[]
 
   @@map("user")
 }

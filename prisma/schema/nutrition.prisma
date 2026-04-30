@@ -1,35 +1,97 @@
-// model Food {
-//     id              String  @id @default(uuid(7))
-//     name            String
-//     description     String
-//     servingSize     Float
-//     servingUnit     String
-//     calories        Float
-//     protein         Float
-//     fats            Float
-//     carbs           Float
-// }
+model Food {
+  id               String             @id @default(uuid(7))
+  name             String
+  description      String?
+  category         String
+  servingSize      Float
+  servingUnit      String
+  calories         Float
+  protein          Float
+  fats             Float
+  carbs            Float
+  isCustom         Boolean            @default(false)
+  createdById      String?
+  recipeIngredient RecipeIngredient[]
+  mealLogItem      MealLogItem[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
 
-// model Recipe {
-//     id              String  @id @default(uuid(7))
-//     name            String
-//     description     String
-//     cookTime        Float
-//     prepTime        Float
-//     calories        Float
-//     protein         Float
-//     fats            Float
-//     carbs           Float
-// }
+  @@index([category])
+  @@index([name])
+  @@index([createdById])
+  @@map("food")
+}
 
-// model RecipeIngredient {
+model Recipe {
+  id               String             @id @default(uuid(7))
+  name             String
+  description      String?
+  cuisineTag       String
+  category         String
+  cookTime         Float?
+  prepTime         Float?
+  calories         Float?
+  protein          Float?
+  fats             Float?
+  carbs            Float?
+  isCustom         Boolean            @default(false)
+  createdById      String?
+  recipeIngredient RecipeIngredient[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
 
-// }
+  @@index([name])
+  @@index([category])
+  @@index([cuisineTag])
+  @@index([createdById])
+  @@map("recipe")
+}
 
-// model MealLog {
+model RecipeIngredient {
+  recipeId  String
+  foodId    String
+  quantity  Float
+  unit      String
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  food      Food     @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-// }
+  @@id([recipeId, foodId])
+  @@map("recipe_ingredient")
+}
 
-// model MealLogItem {
+model MealLog {
+  id          String        @id @default(uuid(7))
+  userId      String
+  occasion    String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mealLogItem MealLogItem[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  loggedAt    DateTime
 
-// }
+  @@index([userId])
+  @@index([occasion])
+  @@index([loggedAt])
+  @@map("meal_log")
+}
+
+model MealLogItem {
+  id              String   @id @default(uuid(7))
+  mealLogId       String
+  foodId          String
+  servingQuantity Float
+  calories        Float
+  protein         Float
+  fats            Float
+  carbs           Float
+  mealLog         MealLog  @relation(fields: [mealLogId], references: [id], onDelete: Cascade)
+  food            Food     @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([mealLogId])
+  @@index([foodId])
+  @@map("meal_log_item")
+}

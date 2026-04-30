@@ -1,7 +1,7 @@
 model Exercise {
   id                   String                @id @default(uuid(7))
   name                 String
-  description          String
+  description          String?
   equipment            String
   category             String
   difficulty           String
@@ -11,16 +11,16 @@ model Exercise {
   createdAt            DateTime              @default(now())
   updatedAt            DateTime              @updatedAt
 
-    @@index([category])
-    @@index([equipment])
-    @@index([difficulty])
-    @@index([createdById])
+  @@index([category])
+  @@index([equipment])
+  @@index([difficulty])
+  @@index([createdById])
   @@map("exercise")
 }
 
 model MuscleGroup {
   id                   String                @id @default(uuid(7))
-  name                 String                  @unique
+  name                 String                @unique
   displayName          String
   bodyRegion           String
   exerciseMuscleGroups ExerciseMuscleGroup[]
