@@ -11,3 +11,11 @@ export type Range = {
   start: CalendarDate;
   end: CalendarDate;
 };
+
+type Exercise = {
+  id: string;
+  name: string;
+  category: string;
+  equipment: string;
+  difficulty: string;
+};

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <NuxtModal>
+  <NuxtModal title="File Upload">
     <template #body>
       <NuxtFileUpload
         :interactive="false"

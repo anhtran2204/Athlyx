@@ -28,20 +28,7 @@ console.log(authStore.user);
     >
       <DashboardActiveWorkoutCard class="dashboard-workout lg:col-span-4 bg-elevated/50" />
       <DashboardMacroCard class="dashboard-nutrition lg:col-span-2 bg-elevated/50" />
-      <div class="dashboard-activity relative lg:col-span-4 h-full">
-        <div class="relative bg-elevated/50 rounded-2xl min-w-fit h-full">
-          <CarouselCard
-            :titles="[
-              'Weekly Activity',
-              'Weight Progress',
-              'Training Volume',
-              'Strength Progress',
-              'Workout Intensity',
-              'Personal Records',
-            ]"
-          />
-        </div>
-      </div>
+      <DashboardWeeklyActivityCard class="dashboard-activity" />
       <DashboardWeeklyGoalsCard class="dashboard-goals lg:col-span-2 bg-elevated/50" />
       <DashboardRecentActivityCard class="dashboard-recent lg:col-span-6 bg-elevated/50" />
       <DashboardQuickActions class="dashboard-quick lg:col-span-6" />

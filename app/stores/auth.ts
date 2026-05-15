@@ -28,7 +28,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
         onError() {
           toast.add({
             id: "oauth-error",
-            title: "Reset failed",
+            title: "Sign in failed",
             description: "Something went wrong on our end. Please try again in a moment.",
             icon: "lucide:circle-x",
             color: "error",
@@ -54,7 +54,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
         onError() {
           toast.add({
             id: "oauth-error",
-            title: "Reset failed",
+            title: "Sign in failed",
             description: "Something went wrong on our end. Please try again in a moment.",
             icon: "lucide:circle-x",
             color: "error",
@@ -78,7 +78,7 @@ export const useAuthStore = defineStore("useAuthStore", () => {
         onError() {
           toast.add({
             id: "signout-error",
-            title: "Reset failed",
+            title: "Sign out failed",
             description: "Something went wrong on our end. Please try again in a moment.",
             icon: "lucide:circle-x",
             color: "error",

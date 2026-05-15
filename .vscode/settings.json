@@ -3,7 +3,7 @@
   "prettier.enable": false,
   "editor.formatOnSave": false,
 
-  "eslint.runtime": "/home/jasontran2048/.nvm/versions/node/v24.12.0/bin/node",
+  "eslint.runtime": "/home/jason/.nvm/versions/node/v24.15.0/bin/node",
 
   // Auto fix
   "editor.codeActionsOnSave": {
@@ -61,5 +61,6 @@
     "pcss",
     "postcss",
     "prisma"
-  ]
+  ],
+  "editor.gotoLocation.multipleDefinitions": "goto"
 }
