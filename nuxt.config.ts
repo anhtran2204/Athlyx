@@ -8,6 +8,9 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
+  telemetry: {
+    enabled: false,
+  },
   modules: [
     "@nuxt/eslint",
     "@nuxt/ui",

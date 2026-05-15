@@ -61,12 +61,6 @@ export default defineAppConfig({
         root: "dark:border-default light:border-slate-400/25",
       },
     },
-    modal: {
-      slots: {
-        content: "divide-none",
-        body: "pb-4 sm:pb-8 pt-0 sm:pt-0",
-      },
-    },
     authForm: {
       slots: {
         input: "focus-visible:ring-neutral",

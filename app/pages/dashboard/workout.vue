@@ -1,39 +1,15 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
-
-const items: NavigationMenuItem[][] = [
-  [
-    {
-      label: "Overview",
-      icon: "tabler:chart-arcs-3",
-      exact: true,
-      to: "/dashboard/workout",
-    },
-    {
-      label: "Active Workout",
-      icon: "lucide:activity",
-      exact: true,
-    },
-    {
-      label: "Routines",
-      icon: "lucide:clipboard-list",
-    },
-    {
-      label: "Exercises",
-      icon: "lucide:dumbbell",
-    },
-  ],
-];
 </script>
 
 <template>
-  <NuxtDashboardPanel resizable class="dark:bg-dashboard light:bg-dashboard">
+  <NuxtDashboardPanel resizable class="dark:bg-slate-950 light:bg-white">
     <template #header>
       <NuxtDashboardNavbar
         title="Workout"
         :ui="{
           title: 'text-xl',
         }"
+        class="dark:bg-slate-900 light:bg-gray-300"
       >
         <template #leading>
           <LazyNuxtDashboardSidebarCollapse />
@@ -44,18 +20,6 @@ const items: NavigationMenuItem[][] = [
           <ProfileButton />
         </template>
       </NuxtDashboardNavbar>
-      <NuxtDashboardToolbar
-        :ui="{
-          root: 'px-4',
-        }"
-      >
-        <NuxtNavigationMenu
-          :items="items"
-          highlight
-          highlight-color="info"
-          class="flex-1 -ms-1"
-        />
-      </NuxtDashboardToolbar>
     </template>
     <template #body>
       <NuxtPage />

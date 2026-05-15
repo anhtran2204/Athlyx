@@ -8,7 +8,7 @@ definePageMeta({
 </script>
 
 <template>
-  <NuxtDashboardPanel resizable class="dark:bg-dashboard light:bg-dashboard">
+  <NuxtDashboardPanel resizable class="dark:bg-slate-950 light:bg-gray-200">
     <NuxtPage />
   </NuxtDashboardPanel>
 </template>

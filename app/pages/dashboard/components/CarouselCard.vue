@@ -22,7 +22,7 @@ function goToCard(index: number) {
 </script>
 
 <template>
-  <div class="min-w-fit w-full h-full flex flex-col items-center">
+  <div class="flex-1 min-w-fit w-full h-full flex flex-col items-center">
     <header class="min-w-fit w-full">
       <slot name="header">
         <div class="flex min-w-fit p-4 sm:p-6 justify-between gap-8">

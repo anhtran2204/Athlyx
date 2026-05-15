@@ -75,11 +75,10 @@ const groups = computed(() => [{
 
 <template>
   <ClientOnly>
-    <NuxtDashboardGroup class="dark:bg-slate-950 light:bg-white">
+    <NuxtDashboardGroup class="dark:bg-slate-900 light:bg-gray-300">
       <NuxtDashboardSidebar
         collapsible
         resizable
-        class="border-0"
         :ui="{ footer: 'border-t border-default' }"
       >
         <template #header="{ collapsed }">

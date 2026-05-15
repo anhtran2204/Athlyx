@@ -45,9 +45,9 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center items-baseline gap-1">
+    <div class="flex justify-center items-baseline gap-2">
       <span class="text-sm text-muted">or</span>
-      <span class="text-info font-medium  hover:cursor-pointer">Start New Workout</span>
+      <span class="text-info font-medium tracking-tight text-pretty hover:cursor-pointer">Start New Workout</span>
     </div>
   </div>
 </template>

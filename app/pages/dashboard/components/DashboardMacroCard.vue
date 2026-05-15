@@ -38,7 +38,6 @@ const macroLabels = {
         :radius="5"
         :pad-angle="0.05"
         :arc-width="20"
-        class=""
       >
         <div class="text-center">
           <div class="text-3xl font-semibold">

@@ -11,7 +11,7 @@ const period = ref<Period>("daily");
 </script>
 
 <template>
-  <NuxtDashboardPanel resizable class="dark:bg-dashboard light:bg-dashboard">
+  <NuxtDashboardPanel resizable class="dark:bg-slate-950 light:bg-gray-200">
     <template #header>
       <NuxtDashboardNavbar
         title="Home"
@@ -21,6 +21,7 @@ const period = ref<Period>("daily");
         :toggle="{
           icon: 'lucide:panel-right-close',
         }"
+        class="dark:bg-slate-900 light:bg-white"
       >
         <template #leading>
           <LazyNuxtDashboardSidebarCollapse class="hover:cursor-pointer" />
@@ -31,7 +32,7 @@ const period = ref<Period>("daily");
           <ProfileButton />
         </template>
       </NuxtDashboardNavbar>
-      <NuxtDashboardToolbar>
+      <NuxtDashboardToolbar class="dark:bg-slate-900 light:bg-white">
         <template #left>
           <DatePicker v-model="range" class="-ms-1" />
           <PeriodSelect v-model="period" :range="range" />
